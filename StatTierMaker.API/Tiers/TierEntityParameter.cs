@@ -17,9 +17,14 @@ namespace StatTierMaker.API.Tiers
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of a parameter.
+        /// Name of parameter.
         /// </summary>
         public string? Name { get; set; }
+
+        /// <summary>
+        /// Description of parameter.
+        /// </summary>
+        public string? Description { get; set; }
 
         /// <summary>
         /// Value of parameter.
@@ -27,7 +32,7 @@ namespace StatTierMaker.API.Tiers
         public TierValues Value { get; set; }
 
         /// <summary>
-        /// Coefficient of a parameter.
+        /// Coefficient of parameter.
         /// </summary>
         public double Coefficient { get; set; } = 1;
     }

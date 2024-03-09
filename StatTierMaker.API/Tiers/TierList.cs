@@ -11,9 +11,14 @@ public class TierList
     public int Id { get; set; }
 
     /// <summary>
-    /// Name of a tier list.
+    /// Name of tier list.
     /// </summary>
     public string? Name { get; set; }
+
+    /// <summary>
+    /// Desctiption of tier list.
+    /// </summary>
+    public string? Description { get; set; }
 
     /// <summary>
     /// Collection of tier entities.
