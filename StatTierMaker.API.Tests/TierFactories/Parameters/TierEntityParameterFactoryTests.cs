@@ -11,18 +11,18 @@ namespace StatTierMaker.API.Tests.TierFactories.Parameters
 {
     public class TierEntityParameterFactoryTests
     {
-        private readonly ILogger<TierEntityParameterFactory> mockLogger;
+        private readonly ILogger<TierParameterFactory> mockLogger;
 
         public TierEntityParameterFactoryTests()
         {
-            mockLogger = new LoggerFactory().CreateLogger<TierEntityParameterFactory>();
+            mockLogger = new LoggerFactory().CreateLogger<TierParameterFactory>();
         }
 
         [Fact]
         public async Task CreateAsync_Normal()
         {
             //arrange
-            ITierEntityParameterFactory tierEntityParameterFactory = new TierEntityParameterFactory(mockLogger);
+            ITierParameterFactory tierEntityParameterFactory = new TierParameterFactory(mockLogger);
             var name = "Test name";
             var description = "Test description";
             var value = TierValues.F;

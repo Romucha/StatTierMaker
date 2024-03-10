@@ -29,7 +29,7 @@ namespace StatTierMaker.API.TierFactories.Entities
                 {
                     Name = name,
                     Description = description,
-                    TierEntityParameters = new List<TierEntityParameter>()
+                    TierEntityParameters = new List<TierParameter>()
                 });
             }
             catch (Exception ex)

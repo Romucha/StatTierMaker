@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace StatTierMaker.API.Tiers
 {
     /// <summary>
-    /// Entity of a tier list.
+    /// A parameter of a tier entity.
     /// </summary>
-    public class TierEntity
+    public class TierParameter
     {
         /// <summary>
         /// Id.
@@ -17,23 +17,23 @@ namespace StatTierMaker.API.Tiers
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of a tier entity.
+        /// Name of parameter.
         /// </summary>
         public string? Name { get; set; }
 
         /// <summary>
-        /// Description of a tier entity.
+        /// Description of parameter.
         /// </summary>
         public string? Description { get; set; }
 
         /// <summary>
-        /// A tier that this entity belongs to.
+        /// Value of parameter.
         /// </summary>
-        public  Tier? Tier { get; set; }
+        public TierValues Value { get; set; }
 
         /// <summary>
-        /// List of entity parameters.
+        /// Coefficient of parameter.
         /// </summary>
-        public ICollection<TierParameter>? TierEntityParameters  { get; set; }
+        public double Coefficient { get; set; } = 1;
     }
 }

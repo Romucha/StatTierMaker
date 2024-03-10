@@ -10,7 +10,7 @@ namespace StatTierMaker.API.TierFactories.Parameters
     /// <summary>
     /// Factory for making tier entity parameters.
     /// </summary>
-    public interface ITierEntityParameterFactory
+    public interface ITierParameterFactory
     {
         /// <summary>
         /// Create tier entity parameter.
@@ -20,6 +20,6 @@ namespace StatTierMaker.API.TierFactories.Parameters
         /// <param name="value">Value of parameter.</param>
         /// <param name="coefficient">Coefficient of parameter.</param>
         /// <returns></returns>
-        Task<TierEntityParameter> CreateAsync(string name, string description, TierValues value, double coefficient);
+        Task<TierParameter> CreateAsync(string name, string description, TierValues value, double coefficient);
     }
 }

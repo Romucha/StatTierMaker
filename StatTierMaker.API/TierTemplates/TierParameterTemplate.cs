@@ -1,21 +1,17 @@
-﻿using System;
+﻿using StatTierMaker.API.Tiers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.API.Tiers
+namespace StatTierMaker.API.TierTemplates
 {
     /// <summary>
-    /// A parameter of a tier entity.
+    /// Template of a tier entity parameter.
     /// </summary>
-    public class TierEntityParameter
+    public class TierParameterTemplate
     {
-        /// <summary>
-        /// Id.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Name of parameter.
         /// </summary>
@@ -25,11 +21,6 @@ namespace StatTierMaker.API.Tiers
         /// Description of parameter.
         /// </summary>
         public string? Description { get; set; }
-
-        /// <summary>
-        /// Value of parameter.
-        /// </summary>
-        public TierValues Value { get; set; }
 
         /// <summary>
         /// Coefficient of parameter.

@@ -11,20 +11,20 @@ namespace StatTierMaker.API.TierFactories.Parameters
     /// <summary>
     /// Default tier entity parameter factory. 
     /// </summary>
-    public class TierEntityParameterFactory : ITierEntityParameterFactory
+    public class TierParameterFactory : ITierParameterFactory
     {
-        private readonly ILogger<TierEntityParameterFactory> logger;
+        private readonly ILogger<TierParameterFactory> logger;
 
-        public TierEntityParameterFactory(ILogger<TierEntityParameterFactory> logger) 
+        public TierParameterFactory(ILogger<TierParameterFactory> logger) 
         {
             this.logger = logger;
         }
-        public async Task<TierEntityParameter> CreateAsync(string name, string description, TierValues value, double coefficient)
+        public async Task<TierParameter> CreateAsync(string name, string description, TierValues value, double coefficient)
         {
             try
             {
                 logger.LogInformation($"Creating new instance of {nameof(TierEntity)} with name: {name}, description: {description}, value: {value}, coefficient: {coefficient}...");
-                return await Task.FromResult(new TierEntityParameter()
+                return await Task.FromResult(new TierParameter()
                 {
                     Name = name,
                     Description = description,
@@ -35,7 +35,7 @@ namespace StatTierMaker.API.TierFactories.Parameters
             }
             catch (Exception ex) 
             {
-                logger.LogError(ex, nameof(TierEntityParameterFactory));
+                logger.LogError(ex, nameof(TierParameterFactory));
                 throw;
             }
             finally
