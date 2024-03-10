@@ -20,6 +20,6 @@ namespace StatTierMaker.API.TierFactories.Parameters
         /// <param name="value">Value of parameter.</param>
         /// <param name="coefficient">Coefficient of parameter.</param>
         /// <returns></returns>
-        Task<TierEntityParameter> Create(string name, string description, TierValues value, double coefficient);
+        Task<TierEntityParameter> CreateAsync(string name, string description, TierValues value, double coefficient);
     }
 }

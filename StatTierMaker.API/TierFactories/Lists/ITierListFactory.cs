@@ -18,6 +18,6 @@ namespace StatTierMaker.API.TierFactories.Lists
         /// <param name="name">Name of tier list.</param>
         /// <param name="description">Description of tier list.</param>
         /// <returns></returns>
-        Task<TierList> Create(string name, string description);
+        Task<TierList> CreateAsync(string name, string description);
     }
 }

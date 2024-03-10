@@ -18,6 +18,6 @@ namespace StatTierMaker.API.TierFactories.Entities
         /// <param name="name">Name of a new entity.</param>
         /// <param name="description">Description of a new entity.</param>
         /// <returns></returns>
-        Task<TierEntity> Create(string name, string description);
+        Task<TierEntity> CreateAsync(string name, string description);
     }
 }
