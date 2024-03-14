@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Parameters;
 using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,28 +16,30 @@ namespace StatTierMaker.API.TierTemplateFactories.Entities
     public class TierEntityTemplateFactory : ITierEntityTemplateFactory
     {
         private readonly ILogger<TierEntityTemplateFactory> logger;
+        private readonly IValidator validator;
 
-        private readonly ITierParameterFactory parameterFactory;
-
-        public TierEntityTemplateFactory(ILogger<TierEntityTemplateFactory> logger, ITierParameterFactory tierParameterFactory)
+        public TierEntityTemplateFactory(ILogger<TierEntityTemplateFactory> logger, IValidator validator)
         {
             this.logger = logger;
-            this.parameterFactory = tierParameterFactory;
+            this.validator = validator;
         }
 
-        public async Task<TierEntityTemplate> CreateAsync()
+        public async Task<TierEntityTemplate> CreateAsync(ICollection<TierParameterTemplate> parameterTemplates)
         {
             try
             {
                 logger.LogInformation($"Creating {nameof(TierEntityTemplate)}");
-                return await Task.FromResult(new TierEntityTemplate()
+                var result = new TierEntityTemplate()
                 {
-                    TierParameterTemplates = new List<TierParameterTemplate>()
-                });
+                    TierParameterTemplates = parameterTemplates
+                };
+                await validator.Validate(result);
+
+                return await Task.FromResult(result);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, nameof(TierEntityTemplateFactory));
+                logger.LogError(ex, nameof(CreateAsync));
                 throw;
             }
             finally

@@ -10,6 +10,6 @@ namespace StatTierMaker.API.TierTemplateFactories.Entities
 {
     public interface ITierEntityTemplateFactory
     {
-        Task<TierEntityTemplate> CreateAsync();
+        Task<TierEntityTemplate> CreateAsync(ICollection<TierParameterTemplate> parameterTemplates);
     }
 }

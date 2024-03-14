@@ -26,4 +26,9 @@
     <ProjectReference Include="..\StatTierMaker.API\StatTierMaker.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TierTemplateFactories\Lists\" />
+    <Folder Include="TierTemplateFactories\Parameters\" />
+  </ItemGroup>
+
 </Project>
