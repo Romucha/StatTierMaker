@@ -46,7 +46,7 @@ namespace StatTierMaker.API.Tests.TierTemplateFactories.Entities
             ITierEntityTemplateFactory tierEntityTemplateFactory = new TierEntityTemplateFactory(factoryLogger, validator);
             ICollection<TierParameterTemplate>? parameterTemplates = null;
             //actt & assert
-            await Assert.ThrowsAsync<ArgumentException>(async () => await tierEntityTemplateFactory.CreateAsync(parameterTemplates));
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityTemplateFactory.CreateAsync(parameterTemplates));
         }
     }
 }

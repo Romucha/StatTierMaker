@@ -22,7 +22,7 @@ namespace StatTierMaker.API.Validation
             try
             {
                 logger.LogInformation($"Validating {typeof(T)}...");
-                ValidationContext validationContext = new ValidationContext(value);
+                ValidationContext validationContext = new ValidationContext(value, null, null);
                 ICollection<ValidationResult> validationResults = new List<ValidationResult>();
                 if (Validator.TryValidateObject(value, validationContext, validationResults, true))
                 {
@@ -30,12 +30,13 @@ namespace StatTierMaker.API.Validation
                 }
                 else
                 {
-                    throw new ArgumentException(string.Join("\n", validationResults));
+                    throw new ValidationException(string.Join("\n", validationResults));
                 }
             }
             catch (Exception ex) 
             {
                 logger.LogError(ex, nameof(Validate));
+                throw;
             }
             finally
             {
