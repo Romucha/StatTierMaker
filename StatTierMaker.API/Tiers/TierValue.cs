@@ -9,7 +9,7 @@ namespace StatTierMaker.API.Tiers
     /// <summary>
     /// All possible values of a tier parameter.
     /// </summary>
-    public enum TierValues
+    public enum TierValue
     {
         F = 0,
         E,

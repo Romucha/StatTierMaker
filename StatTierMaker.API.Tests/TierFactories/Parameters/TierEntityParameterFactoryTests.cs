@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Parameters;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +13,36 @@ namespace StatTierMaker.API.Tests.TierFactories.Parameters
 {
     public class TierEntityParameterFactoryTests
     {
-        private readonly ILogger<TierParameterFactory> mockLogger;
+        private readonly ILogger<TierParameterFactory> factoryLogger;
+        private readonly IValidator validator;
 
         public TierEntityParameterFactoryTests()
         {
-            mockLogger = new LoggerFactory().CreateLogger<TierParameterFactory>();
+            factoryLogger = new LoggerFactory().CreateLogger<TierParameterFactory>();
+            var validatorLogger = new LoggerFactory().CreateLogger<TierValidator>();
+            validator = new TierValidator(validatorLogger);
         }
 
         [Fact]
         public async Task CreateAsync_Normal()
         {
             //arrange
-            ITierParameterFactory tierEntityParameterFactory = new TierParameterFactory(mockLogger);
-            var name = "Test name";
-            var description = "Test description";
-            var value = TierValues.F;
-            var coefficient = 1;
+            ITierParameterFactory tierEntityParameterFactory = new TierParameterFactory(factoryLogger, validator);
+            var tierParameterTemplate = new TierParameterTemplate()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Coefficient = 1,
+            };
+            TierValue tierValue = TierValue.A;
             //act
-            var result = await tierEntityParameterFactory.CreateAsync(name, description, value, coefficient);
+            var result = await tierEntityParameterFactory.CreateAsync(tierParameterTemplate, tierValue);
             //assert
             Assert.NotNull(result);
-            Assert.Equal(name, result.Name);
-            Assert.Equal(description, result.Description);
-            Assert.Equal(value, result.Value);
-            Assert.Equal(coefficient, result.Coefficient);
+            Assert.Equal(tierParameterTemplate.Name, result.Name);
+            Assert.Equal(tierParameterTemplate.Description, result.Description);
+            Assert.Equal(tierValue, result.Value);
+            Assert.Equal(tierParameterTemplate.Coefficient, result.Coefficient);
         }
     }
 }

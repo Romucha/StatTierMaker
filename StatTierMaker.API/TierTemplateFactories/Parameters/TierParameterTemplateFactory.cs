@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace StatTierMaker.API.TierTemplateFactories.Parameters
     public class TierParameterTemplateFactory : ITierParameterTemplateFactory
     {
         private readonly ILogger<TierParameterTemplateFactory> logger;
+        private readonly IValidator validator;
 
-        public TierParameterTemplateFactory(ILogger<TierParameterTemplateFactory> logger)
+        public TierParameterTemplateFactory(ILogger<TierParameterTemplateFactory> logger, IValidator validator)
         {
             this.logger = logger;
+            this.validator = validator;
         }
 
         public async Task<TierParameterTemplate> CreateAsync(string name, string description, double coefficient)
@@ -22,7 +25,7 @@ namespace StatTierMaker.API.TierTemplateFactories.Parameters
             try
             {
                 logger.LogInformation($"Creating {nameof(TierParameterTemplate)} with name: {name}; description: {description}; coefficient: {coefficient}");
-                return await Task.FromResult(new TierParameterTemplate()
+                return await validator.ValidateAsync(new TierParameterTemplate()
                 {
                     Name = name,
                     Description = description,

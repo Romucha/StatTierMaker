@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Entities;
+using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,14 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
 {
     public class TierEntityFactoryTests
     {
-        private ILogger<TierEntityFactory> mocklogger;
+        private ILogger<TierEntityFactory> factorylogger;
+        private readonly IValidator validator;
 
         public TierEntityFactoryTests()
         {
-            mocklogger = new LoggerFactory().CreateLogger<TierEntityFactory>();
+            factorylogger = new LoggerFactory().CreateLogger<TierEntityFactory>();
+            var validatorLogger = new LoggerFactory().CreateLogger<TierValidator>();
+            validator = new TierValidator(validatorLogger);
         }
 
         [Fact]
@@ -23,7 +28,7 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
             //arrange
             var name = "Test name";
             var description = "Test description";
-            ITierEntityFactory tierEntityFactory = new TierEntityFactory(mocklogger);
+            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator);
             //act
             var result = await tierEntityFactory.CreateAsync(name, description);
             //assert

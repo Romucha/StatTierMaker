@@ -17,7 +17,7 @@ namespace StatTierMaker.API.Validation
             this.logger = logger;
         }
 
-        public async Task Validate<T>(T? value)
+        public async Task<T> ValidateAsync<T>(T? value)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace StatTierMaker.API.Validation
                 ICollection<ValidationResult> validationResults = new List<ValidationResult>();
                 if (Validator.TryValidateObject(value, validationContext, validationResults, true))
                 {
-                    await Task.CompletedTask;
+                    return await Task.FromResult(value);
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace StatTierMaker.API.Validation
             }
             catch (Exception ex) 
             {
-                logger.LogError(ex, nameof(Validate));
+                logger.LogError(ex, nameof(ValidateAsync));
                 throw;
             }
             finally

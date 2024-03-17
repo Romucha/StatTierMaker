@@ -29,6 +29,6 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Value of this tier.
         /// </summary>
-        public TierValues TierValue { get; set; }
+        public TierValue TierValue { get; set; }
     }
 }

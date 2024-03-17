@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,22 +16,24 @@ namespace StatTierMaker.API.TierFactories.Parameters
     public class TierParameterFactory : ITierParameterFactory
     {
         private readonly ILogger<TierParameterFactory> logger;
+        private readonly IValidator validator;
 
-        public TierParameterFactory(ILogger<TierParameterFactory> logger) 
+        public TierParameterFactory(ILogger<TierParameterFactory> logger, IValidator validator) 
         {
             this.logger = logger;
+            this.validator = validator;
         }
-        public async Task<TierParameter> CreateAsync(string name, string description, TierValues value, double coefficient)
+        public async Task<TierParameter> CreateAsync(TierParameterTemplate tierParameterTemplate, TierValue tierValue)
         {
             try
             {
-                logger.LogInformation($"Creating new instance of {nameof(TierEntity)} with name: {name}, description: {description}, value: {value}, coefficient: {coefficient}...");
-                return await Task.FromResult(new TierParameter()
+                logger.LogInformation($"Creating new instance of {nameof(TierEntity)} from {nameof(TierParameterTemplate)} with name: {tierParameterTemplate.Name}; description: {tierParameterTemplate.Description}; coefficient: {tierParameterTemplate.Coefficient}...");
+                return await validator.ValidateAsync(new TierParameter()
                 {
-                    Name = name,
-                    Description = description,
-                    Value = value,
-                    Coefficient = coefficient
+                    Name = tierParameterTemplate.Name,
+                    Description = tierParameterTemplate.Description,
+                    Value = tierValue,
+                    Coefficient = tierParameterTemplate.Coefficient
                 });
 
             }
@@ -40,7 +44,7 @@ namespace StatTierMaker.API.TierFactories.Parameters
             }
             finally
             {
-                logger.LogInformation("Creaton done.");
+                logger.LogInformation("Creation done.");
             }
         }
     }

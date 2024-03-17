@@ -32,7 +32,7 @@ namespace StatTierMaker.API.Tests.Validation
                 OptionalDummyString = "test",
             };
             //act
-            await validator.Validate(model);
+            await validator.ValidateAsync(model);
             //assert
             //nothing to assert
         }
@@ -50,9 +50,10 @@ namespace StatTierMaker.API.Tests.Validation
                 OptionalDummyString = null,
             };
             //act
-            await validator.Validate(model);
+            var result = await validator.ValidateAsync(model);
             //assert
-            //nothing to assert
+            Assert.NotNull(result);
+            Assert.Equal(model, result);
         }
 
         [Theory]
@@ -70,7 +71,7 @@ namespace StatTierMaker.API.Tests.Validation
                 RequiredDummyString = requiredString,
             };
             //act & assert
-            await Assert.ThrowsAsync<ValidationException>(async () => await validator.Validate(model));
+            await Assert.ThrowsAsync<ValidationException>(async () => await validator.ValidateAsync(model));
         }
     }
 }

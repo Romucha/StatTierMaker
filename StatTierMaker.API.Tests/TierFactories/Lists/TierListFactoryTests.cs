@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Lists;
+using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +12,32 @@ namespace StatTierMaker.API.Tests.TierFactories.Lists
 {
     public class TierListFactoryTests
     {
-        private readonly ILogger<TierListFactory> mockLogger;
+        private readonly ILogger<TierListFactory> factoryLogger;
+        private readonly IValidator validator;
 
         public TierListFactoryTests() 
         {
-            mockLogger = new LoggerFactory().CreateLogger<TierListFactory>();
+            factoryLogger = new LoggerFactory().CreateLogger<TierListFactory>();
+            var validatorLogger = new LoggerFactory().CreateLogger<TierValidator>();
+            validator = new TierValidator(validatorLogger);
         }
 
         [Fact]
         public async Task CreateAsync_Normal()
         {
             //arrange
-            ITierListFactory tierListFactory = new TierListFactory(mockLogger);
-            var name = "Test name";
-            var description = " Test description";
+            ITierListFactory tierListFactory = new TierListFactory(factoryLogger, validator);
+            TierListTemplate tierListTemplate = new TierListTemplate()
+            {
+                Name = "Test name",
+                Description = " Test description",
+            };
             //act
-            var result = await tierListFactory.CreateAsync(name, description);
+            var result = await tierListFactory.CreateAsync(tierListTemplate);
             //assert
             Assert.NotNull(result);
-            Assert.Equal(name, result.Name);
-            Assert.Equal(description, result.Description);
+            Assert.Equal(tierListTemplate.Name, result.Name);
+            Assert.Equal(tierListTemplate.Description, result.Description);
         }
     }
 }

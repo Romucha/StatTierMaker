@@ -8,6 +8,6 @@ namespace StatTierMaker.API.Validation
 {
     public interface IValidator
     {
-        Task Validate<T>(T value);
+        Task<T> ValidateAsync<T>(T value);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using StatTierMaker.API.Tiers;
+using StatTierMaker.API.TierTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,9 @@ namespace StatTierMaker.API.TierFactories.Parameters
         /// <summary>
         /// Create tier entity parameter.
         /// </summary>
-        /// <param name="name">Name of parameter.</param>
-        /// <param name="description">Description of parameter.</param>
-        /// <param name="value">Value of parameter.</param>
-        /// <param name="coefficient">Coefficient of parameter.</param>
+        /// <param name="tierParameterTemplate">Template of a tier parameter.</param>
+        /// <param name="tierValue">Tier value.</param>
         /// <returns></returns>
-        Task<TierParameter> CreateAsync(string name, string description, TierValues value, double coefficient);
+        Task<TierParameter> CreateAsync(TierParameterTemplate tierParameterTemplate, TierValue tierValue);
     }
 }

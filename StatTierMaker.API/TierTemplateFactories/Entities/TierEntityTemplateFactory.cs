@@ -33,9 +33,7 @@ namespace StatTierMaker.API.TierTemplateFactories.Entities
                 {
                     TierParameterTemplates = parameterTemplates
                 };
-                await validator.Validate(result);
-
-                return await Task.FromResult(result);
+                return await validator.ValidateAsync(result);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace StatTierMaker.API.TierFactories.Entities
     public class TierEntityFactory : ITierEntityFactory
     {
         private readonly ILogger<TierEntityFactory> logger;
+        private readonly IValidator validator;
 
-        public TierEntityFactory(ILogger<TierEntityFactory> logger)
+        public TierEntityFactory(ILogger<TierEntityFactory> logger, IValidator validator)
         {
             this.logger = logger;
+            this.validator = validator;
         }
 
         public async Task<TierEntity> CreateAsync(string name, string description)
@@ -25,7 +28,7 @@ namespace StatTierMaker.API.TierFactories.Entities
             try
             {
                 logger.LogInformation($"Creating new instance of {nameof(TierEntity)} with name: {name}, description: {description}...");
-                return await Task.FromResult(new TierEntity()
+                return await validator.ValidateAsync(new TierEntity()
                 {
                     Name = name,
                     Description = description,

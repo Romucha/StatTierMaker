@@ -29,7 +29,7 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Value of parameter.
         /// </summary>
-        public TierValues Value { get; set; }
+        public TierValue Value { get; set; }
 
         /// <summary>
         /// Coefficient of parameter.
