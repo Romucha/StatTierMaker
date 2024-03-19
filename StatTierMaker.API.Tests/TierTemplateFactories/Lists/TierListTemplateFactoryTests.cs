@@ -28,7 +28,6 @@ namespace StatTierMaker.API.Tests.TierTemplateFactories.Lists
         [Theory]
         [InlineData("Test name", "Test description")]
         [InlineData("Test name", "")]
-        [InlineData("Test name", null)]
         public async Task CreateAsync_Normal(string? name, string? description)
         {
             //arrange
@@ -44,6 +43,7 @@ namespace StatTierMaker.API.Tests.TierTemplateFactories.Lists
         [Theory]
         [InlineData("", "Test description")]
         [InlineData(null, "Test description")]
+        [InlineData("Test name", null)]
         public async Task CreateAsync_ThrowsException_WhenParametersAreInvalid(string? name, string? description)
         {
             //arrange

@@ -16,16 +16,19 @@ namespace StatTierMaker.API.TierTemplates
         /// <summary>
         /// Name of parameter.
         /// </summary>
+        [Required]
         public string? Name { get; set; }
 
         /// <summary>
         /// Description of parameter.
         /// </summary>
+        [Required(AllowEmptyStrings = true)]
         public string? Description { get; set; }
 
         /// <summary>
         /// Coefficient of parameter.
         /// </summary>
+        [Range(0, double.MaxValue, MinimumIsExclusive = true)]
         public double Coefficient { get; set; } = 1;
     }
 }

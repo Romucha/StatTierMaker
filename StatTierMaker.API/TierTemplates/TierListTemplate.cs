@@ -21,6 +21,7 @@ namespace StatTierMaker.API.TierTemplates
         /// <summary>
         /// Description.
         /// </summary>
+        [Required(AllowEmptyStrings = true)]
         public string? Description { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace StatTierMaker.API.TierTemplateFactories.Parameters
             this.validator = validator;
         }
 
-        public async Task<TierParameterTemplate> CreateAsync(string name, string description, double coefficient)
+        public async Task<TierParameterTemplate> CreateAsync(string? name, string? description, double coefficient)
         {
             try
             {
