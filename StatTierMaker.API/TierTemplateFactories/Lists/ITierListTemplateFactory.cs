@@ -17,8 +17,7 @@ namespace StatTierMaker.API.TierTemplateFactories.Lists
         /// </summary>
         /// <param name="name">Name.</param>
         /// <param name="description">Description.</param>
-        /// <param name="tierEntityTemplate">Template of tier list entity.</param>
         /// <returns></returns>
-        Task<TierListTemplate> CreateAsync(string name, string description, TierEntityTemplate tierEntityTemplate);
+        Task<TierListTemplate> CreateAsync(string? name, string? description);
     }
 }

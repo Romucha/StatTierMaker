@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,12 @@ namespace StatTierMaker.API.TierTemplates
         /// <summary>
         /// Name.
         /// </summary>
+        [Required]
         public string? Name { get; set; }
 
         /// <summary>
         /// Description.
         /// </summary>
         public string? Description { get; set; }
-
-        /// <summary>
-        /// Template of tier list entity.
-        /// </summary>
-        public TierEntityTemplate? TierEntityTemplate { get; set; }
     }
 }

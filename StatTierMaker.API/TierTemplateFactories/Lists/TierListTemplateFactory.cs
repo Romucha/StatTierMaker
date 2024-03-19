@@ -20,7 +20,7 @@ namespace StatTierMaker.API.TierTemplateFactories.Lists
             this.validator = validator;
         }
 
-        public async Task<TierListTemplate> CreateAsync(string name, string description, TierEntityTemplate tierEntityTemplate)
+        public async Task<TierListTemplate> CreateAsync(string? name, string? description)
         {
             try
             {
@@ -29,7 +29,6 @@ namespace StatTierMaker.API.TierTemplateFactories.Lists
                 {
                     Name = name,
                     Description = description,
-                    TierEntityTemplate = tierEntityTemplate
                 });
             }
             catch (Exception ex) 
