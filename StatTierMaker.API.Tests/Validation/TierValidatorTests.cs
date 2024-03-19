@@ -19,41 +19,29 @@ namespace StatTierMaker.API.Tests.Validation
             validatorLogger = new NullLoggerFactory().CreateLogger<TierValidator>();
         }
 
-        [Fact]
-        public async Task Validate_Normal_WhenNormalModel()
+        [Theory]
+        [InlineData(1, 1, "test1", "test2")]
+        [InlineData(1, 1, "test1", null)]
+        public async Task Validate_Normal_WhenNormalModel(int dummyNumber, int dummyNumberMinimumExcluded, string? requiredDummyString, string? optionalDummyString)
         {
             //arrange
             IValidator validator = new TierValidator(validatorLogger);
             ValidationDummyModel model = new ValidationDummyModel()
             {
-                DummyNumber = 1,
-                DummyNumberMinimumExluded = 1,
-                RequiredDummyString = "test",
-                OptionalDummyString = "test",
-            };
-            //act
-            await validator.ValidateAsync(model);
-            //assert
-            //nothing to assert
-        }
-
-        [Fact]
-        public async Task Validate_Normal_WhenOptionalParametersAreNull()
-        {
-            //arrange
-            IValidator validator = new TierValidator(validatorLogger);
-            ValidationDummyModel model = new ValidationDummyModel()
-            {
-                DummyNumber = 1,
-                DummyNumberMinimumExluded = 1,
-                RequiredDummyString = "test",
-                OptionalDummyString = null,
+                DummyNumber = dummyNumber,
+                DummyNumberMinimumExluded = dummyNumberMinimumExcluded,
+                RequiredDummyString = requiredDummyString,
+                OptionalDummyString = optionalDummyString,
             };
             //act
             var result = await validator.ValidateAsync(model);
             //assert
             Assert.NotNull(result);
             Assert.Equal(model, result);
+            Assert.Equal(dummyNumber, result.DummyNumber);
+            Assert.Equal(dummyNumberMinimumExcluded, result.DummyNumberMinimumExluded);
+            Assert.Equal(requiredDummyString, result.RequiredDummyString);
+            Assert.Equal(optionalDummyString, result.OptionalDummyString);
         }
 
         [Theory]
