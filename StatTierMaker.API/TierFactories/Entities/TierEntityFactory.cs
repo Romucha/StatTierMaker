@@ -23,7 +23,7 @@ namespace StatTierMaker.API.TierFactories.Entities
             this.validator = validator;
         }
 
-        public async Task<TierEntity> CreateAsync(string name, string description)
+        public async Task<TierEntity> CreateAsync(string? name, string? description)
         {
             try
             {

@@ -4,6 +4,7 @@ using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,12 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
             validator = new TierValidator(validatorLogger);
         }
 
-        [Fact]
-        public async Task CreateAsync_Normal()
+        [Theory]
+        [InlineData("Test name", "Test description")]
+        [InlineData("Test name", "")]
+        public async Task CreateAsync_Normal(string? name, string? description)
         {
             //arrange
-            var name = "Test name";
-            var description = "Test description";
             ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator);
             //act
             var result = await tierEntityFactory.CreateAsync(name, description);
@@ -35,6 +36,18 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
             Assert.NotNull(result);
             Assert.Equal(name, result.Name);
             Assert.Equal(description, result.Description);
+        }
+
+        [Theory]
+        [InlineData("", "Test description")]
+        [InlineData(null, "Test description")]
+        [InlineData("Test name", null)]
+        public async Task CreateAsync_ThrowsException_WhenParametersAreInvalid(string? name, string? description)
+        {
+            //arrange
+            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator);
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityFactory.CreateAsync(name, description));
         }
     }
 }

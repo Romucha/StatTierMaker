@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StatTierMaker.API.Tiers
 {
     /// <summary>
-    /// Tier objecct.
+    /// Tier object.
     /// </summary>
     public class Tier
     {
