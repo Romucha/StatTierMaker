@@ -18,8 +18,8 @@ namespace StatTierMaker.API.TierFactories.Entities
         /// </summary>
         /// <param name="name">Name of a new entity.</param>
         /// <param name="description">Description of a new entity.</param>
-        /// <param name="tierParameterTemplates">Templates of tier parameters.</param>
+        /// <param name="tierEntityTemplate">Template of a tier entity.</param>
         /// <returns></returns>
-        Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameterTemplate> tierParameterTemplates);
+        Task<TierEntity> CreateAsync(string? name, string? description, TierEntityTemplate tierEntityTemplate);
     }
 }

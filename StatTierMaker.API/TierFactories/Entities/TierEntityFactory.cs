@@ -27,13 +27,17 @@ namespace StatTierMaker.API.TierFactories.Entities
             this.parameterFactory = parameterFactory;
         }
 
-        public async Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameterTemplate> tierParameterTemplates)
+        public async Task<TierEntity> CreateAsync(string? name, string? description, TierEntityTemplate tierEntityTemplate)
         {
             try
             {
                 logger.LogInformation($"Creating new instance of {nameof(TierEntity)} with name: {name}, description: {description}...");
+                if (tierEntityTemplate is null)
+                {
+                    throw new ArgumentNullException(nameof(tierEntityTemplate));
+                }
                 List<TierParameter> parameters = new List<TierParameter>();
-                foreach (var t in tierParameterTemplates) 
+                foreach (var t in tierEntityTemplate.TierParameterTemplates) 
                 {
                     parameters.Add(await parameterFactory.CreateAsync(t, TierValue.F));
                 }
