@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Entities;
+using StatTierMaker.API.TierFactories.Parameters;
+using StatTierMaker.API.TierTemplateFactories.Parameters;
 using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
@@ -14,12 +16,14 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
     public class TierEntityFactoryTests
     {
         private ILogger<TierEntityFactory> factorylogger;
+        private readonly ILogger<TierParameterFactory> parameterTemplateFactoryLogger;
         private readonly IValidator validator;
 
         public TierEntityFactoryTests()
         {
             factorylogger = new LoggerFactory().CreateLogger<TierEntityFactory>();
             var validatorLogger = new LoggerFactory().CreateLogger<TierValidator>();
+            parameterTemplateFactoryLogger = new LoggerFactory().CreateLogger<TierParameterFactory>();
             validator = new TierValidator(validatorLogger);
         }
 
@@ -29,9 +33,10 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
         public async Task CreateAsync_Normal(string? name, string? description)
         {
             //arrange
-            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator);
+            ITierParameterFactory tierParameterTemplateFactory = new TierParameterFactory(parameterTemplateFactoryLogger, validator);
+            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator, tierParameterTemplateFactory);
             //act
-            var result = await tierEntityFactory.CreateAsync(name, description);
+            var result = await tierEntityFactory.CreateAsync(name, description, new List<TierParameterTemplate>());
             //assert
             Assert.NotNull(result);
             Assert.Equal(name, result.Name);
@@ -45,9 +50,10 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
         public async Task CreateAsync_ThrowsException_WhenParametersAreInvalid(string? name, string? description)
         {
             //arrange
-            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator);
+            ITierParameterFactory tierParameterTemplateFactory = new TierParameterFactory(parameterTemplateFactoryLogger, validator);
+            ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator, tierParameterTemplateFactory);
             //act & assert
-            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityFactory.CreateAsync(name, description));
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityFactory.CreateAsync(name, description, new List<TierParameterTemplate>()));
         }
     }
 }
