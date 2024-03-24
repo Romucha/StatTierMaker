@@ -38,6 +38,7 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// List of entity parameters.
         /// </summary>
+        [Required]
         public ICollection<TierParameter>? TierEntityParameters  { get; set; }
     }
 }
