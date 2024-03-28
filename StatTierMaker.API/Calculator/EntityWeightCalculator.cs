@@ -25,6 +25,10 @@ namespace StatTierMaker.API.Calculator
             try
             {
                 var validEntity = await validator.ValidateAsync(entity);
+                foreach (var item in validEntity.TierEntityParameters) 
+                {
+                    await validator.ValidateAsync(item);
+                }
                 logger.LogInformation($"Calculating weight of entity {validEntity.Name}...");
                 return validEntity.TierEntityParameters.Sum(c => (int)c.Value * c.Coefficient);
             }

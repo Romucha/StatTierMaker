@@ -38,22 +38,22 @@ namespace StatTierMaker.API.Tests.Calculator
                     {
                         Name = "Parameter 1",
                         Description = "Description 1",
-                        Coefficient = 0.1,
-                        Value = TierValue.E,
+                        Coefficient = 1,
+                        Value = TierValue.S,
                     },
                     new TierParameter()
                     {
                         Name = "Parameter 2",
                         Description = "Description 2",
-                        Coefficient = 2,
-                        Value = TierValue.S,
+                        Coefficient = 1,
+                        Value = TierValue.E,
                     },
                     new TierParameter()
                     {
                         Name = "Parameter 3",
                         Description = "Description 3",
-                        Coefficient = 1,
-                        Value = TierValue.A,
+                        Coefficient = 3,
+                        Value = TierValue.E,
                     }
                 }
             };
@@ -61,17 +61,32 @@ namespace StatTierMaker.API.Tests.Calculator
             //act
             var weight = await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token);
             //assert
-            // nothing to assert yet
+            Assert.Equal(10, weight);
         }
 
         [Fact]
         public async Task CalclulateWeightAsync_ThrowsException_WhenParametersAreInvalid()
         {
             //arrange
-
-            //act
-
-            //assert
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(calculatorLogger, validator);
+            var entity = new TierEntity()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                TierEntityParameters = new List<TierParameter>()
+                {
+                    new TierParameter()
+                    {
+                        Name = null,
+                        Description = "Description 1",
+                        Coefficient = 1,
+                        Value = TierValue.S,
+                    }
+                }
+            };
+            CancellationTokenSource source = new CancellationTokenSource();
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token));
         }
     }
 }
