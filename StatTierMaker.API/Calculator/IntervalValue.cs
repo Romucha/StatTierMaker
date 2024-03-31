@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.API.Calculator
 {
-    public interface ITierCalculator
+    internal record IntervalValue
     {
-        Task<TierList> CalculateAsync(TierList tierList, CancellationToken cancellationToken);
+        public double Minimum { get; set; }
+
+        public double Maximum { get; set; }
+
+        public TierValue Value { get; set; }
     }
 }

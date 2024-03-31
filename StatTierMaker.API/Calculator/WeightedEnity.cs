@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.API.Calculator
 {
-    public interface ITierCalculator
+    internal record WeightedEnity
     {
-        Task<TierList> CalculateAsync(TierList tierList, CancellationToken cancellationToken);
+        public TierEntity? TierEntity { get; set; }
+
+        public double Weight { get; set; }
     }
 }
