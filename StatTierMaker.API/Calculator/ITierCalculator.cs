@@ -9,6 +9,6 @@ namespace StatTierMaker.API.Calculator
 {
     public interface ITierCalculator
     {
-        Task<TierList> CalculateAsync(TierList tierList, CancellationToken cancellationToken);
+        Task<TierList> CalculateAsync(TierList tierList, IEnumerable<TierEntity> entities, CancellationToken cancellationToken);
     }
 }

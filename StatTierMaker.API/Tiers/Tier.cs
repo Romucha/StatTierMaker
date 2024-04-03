@@ -29,6 +29,11 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Value of this tier.
         /// </summary>
-        public TierValue TierValue { get; set; }
+        public TierValue Value { get; set; }
+
+        /// <summary>
+        /// Collection of tier entities that belong to this tier.
+        /// </summary>
+        public ICollection<TierEntity>? Entities { get; set; }
     }
 }

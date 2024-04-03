@@ -26,7 +26,7 @@ public class TierList
     public string? Description { get; set; }
 
     /// <summary>
-    /// Collection of tier entities.
+    /// Collection of tiers.
     /// </summary>
-    public ICollection<TierEntity>? TierEntities { get; set; }
+    public ICollection<Tier>? Tiers { get; set; }
 }

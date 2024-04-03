@@ -33,7 +33,7 @@ namespace StatTierMaker.API.TierFactories.Lists
                 {
                     Name = tierListTemplate.Name,
                     Description = tierListTemplate.Description,
-                    TierEntities = new List<TierEntity>()
+                    Tiers = new List<TierEntity>()
                 };
                 return await validator.ValidateAsync(result);
             }
