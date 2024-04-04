@@ -13,8 +13,8 @@ namespace StatTierMaker.API.Tests.TestData.Entities
         {
             return new TierEntity()
             {
-                Name = "Entity",
-                Description = "Description",
+                Name = "Entity name",
+                Description = "Entity description",
                 TierEntityParameters = new List<TierParameter>
                 {
                     new TierParameter()

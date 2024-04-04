@@ -12,7 +12,7 @@ namespace StatTierMaker.API.Tests.TestData.Entities
     /// </summary>
     internal static class EntityCollections
     {
-        public static IEnumerable<TierEntity>? Normal()
+        public static IEnumerable<TierEntity> Normal()
         {
             yield return new TierEntity()
             {
@@ -161,7 +161,7 @@ namespace StatTierMaker.API.Tests.TestData.Entities
             };
         }
 
-        public static IEnumerable<TierEntity>? WithInvalidElements()
+        public static IEnumerable<TierEntity> WithInvalidElements()
         {
             yield return new()
             {
@@ -176,13 +176,13 @@ namespace StatTierMaker.API.Tests.TestData.Entities
             };
         }
 
-        public static IEnumerable<TierEntity>? WithNullElements()
+        public static IEnumerable<TierEntity?> WithNullElements()
         {
             yield return new();
             yield return null;
         }
 
-        public static IEnumerable<TierEntity>? Empty()
+        public static IEnumerable<TierEntity> Empty()
         {
             return Enumerable.Empty<TierEntity>();
         }
