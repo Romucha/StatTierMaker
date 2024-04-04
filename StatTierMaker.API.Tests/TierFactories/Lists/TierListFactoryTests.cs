@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Lists;
-using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace StatTierMaker.API.Tests.TierFactories.Lists
 {
@@ -27,17 +27,14 @@ namespace StatTierMaker.API.Tests.TierFactories.Lists
         {
             //arrange
             ITierListFactory tierListFactory = new TierListFactory(factoryLogger, validator);
-            TierListTemplate tierListTemplate = new TierListTemplate()
-            {
-                Name = "Test name",
-                Description = " Test description",
-            };
+            var name = "Test name";
+            var description = " Test description";
             //act
-            var result = await tierListFactory.CreateAsync(tierListTemplate);
+            var result = await tierListFactory.CreateAsync(name, description);
             //assert
             Assert.NotNull(result);
-            Assert.Equal(tierListTemplate.Name, result.Name);
-            Assert.Equal(tierListTemplate.Description, result.Description);
+            Assert.Equal(name, result.Name);
+            Assert.Equal(description, result.Description);
         }
     }
 }

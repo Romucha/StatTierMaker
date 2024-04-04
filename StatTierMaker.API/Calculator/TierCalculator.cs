@@ -33,7 +33,7 @@ namespace StatTierMaker.API.Calculator
                 logger.LogInformation($"Calculating tier list with name: {tierList.Name}...");
                 var weightedEnities = new List<WeightedEnity>();
 
-                foreach (var item in tierList.Tiers) 
+                foreach (var item in tierList.Tiers.SelectMany(c => c.Entities)) 
                 {
                     weightedEnities.Add(new WeightedEnity()
                     {

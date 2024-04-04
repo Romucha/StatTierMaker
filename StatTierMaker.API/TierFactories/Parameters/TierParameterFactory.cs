@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
@@ -23,17 +22,16 @@ namespace StatTierMaker.API.TierFactories.Parameters
             this.logger = logger;
             this.validator = validator;
         }
-        public async Task<TierParameter> CreateAsync(TierParameterTemplate tierParameterTemplate, TierValue tierValue)
+        public async Task<TierParameter> CreateAsync(string? name, string? descripton, double coefficient)
         {
             try
             {
-                logger.LogInformation($"Creating new instance of {nameof(TierEntity)} from {nameof(TierParameterTemplate)} with name: {tierParameterTemplate.Name}; description: {tierParameterTemplate.Description}; coefficient: {tierParameterTemplate.Coefficient}...");
+                logger.LogInformation($"Creating new instance of {nameof(TierParameter)} with name: {name}; description: {descripton}; coefficient: {coefficient}...");
                 return await validator.ValidateAsync(new TierParameter()
                 {
-                    Name = tierParameterTemplate.Name,
-                    Description = tierParameterTemplate.Description,
-                    Value = tierValue,
-                    Coefficient = tierParameterTemplate.Coefficient
+                    Name = name,
+                    Description = descripton,
+                    Coefficient = coefficient
                 });
 
             }

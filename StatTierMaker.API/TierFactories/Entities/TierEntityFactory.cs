@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Parameters;
 using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
@@ -27,25 +26,20 @@ namespace StatTierMaker.API.TierFactories.Entities
             this.parameterFactory = parameterFactory;
         }
 
-        public async Task<TierEntity> CreateAsync(string? name, string? description, TierEntityTemplate tierEntityTemplate)
+        public async Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters)
         {
             try
             {
                 logger.LogInformation($"Creating new instance of {nameof(TierEntity)} with name: {name}, description: {description}...");
-                if (tierEntityTemplate is null)
+                if (tierParameters is null)
                 {
-                    throw new ArgumentNullException(nameof(tierEntityTemplate));
-                }
-                List<TierParameter> parameters = new List<TierParameter>();
-                foreach (var t in tierEntityTemplate.TierParameterTemplates) 
-                {
-                    parameters.Add(await parameterFactory.CreateAsync(t, TierValue.F));
+                    throw new ArgumentNullException(nameof(tierParameters));
                 }
                 return await validator.ValidateAsync(new TierEntity()
                 {
                     Name = name,
                     Description = description,
-                    TierEntityParameters = parameters
+                    TierEntityParameters = new List<TierParameter>(tierParameters)
                 });
             }
             catch (Exception ex)

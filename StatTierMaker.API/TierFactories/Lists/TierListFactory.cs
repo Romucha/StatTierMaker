@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using StatTierMaker.API.TierFactories.Entities;
 using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
@@ -24,17 +24,28 @@ namespace StatTierMaker.API.TierFactories.Lists
             this.validator = validator;
         }
 
-        public async Task<TierList> CreateAsync(TierListTemplate tierListTemplate)
+        public async Task<TierList> CreateAsync(string? name, string? description)
         {
             try
             {
-                logger.LogInformation($"Creating new instance of {nameof(TierList)} from {nameof(TierListTemplate)} with name: {tierListTemplate.Name}; description: {tierListTemplate.Description}...");
+                logger.LogInformation($"Creating new instance of {nameof(TierList)} with name: {name}; description: {description}...");
                 var result = new TierList()
                 {
-                    Name = tierListTemplate.Name,
-                    Description = tierListTemplate.Description,
-                    Tiers = new List<TierEntity>()
+                    Name = name,
+                    Description = description,
+                    Tiers = new List<Tier>()
                 };
+                foreach (var t in Enum.GetValues<TierValue>())
+                {
+                    //TO-DO: add tier factory
+                    result.Tiers.Add(new Tier()
+                    {
+                        Name = t.ToString(),
+                        Description = t.ToString(),
+                        Value = t,
+                        Entities = new List<TierEntity>()
+                    });
+                }
                 return await validator.ValidateAsync(result);
             }
             catch (Exception ex) 

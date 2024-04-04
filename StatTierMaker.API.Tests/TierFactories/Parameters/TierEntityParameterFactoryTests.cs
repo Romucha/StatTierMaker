@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Parameters;
 using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace StatTierMaker.API.Tests.TierFactories.Parameters
 {
@@ -28,21 +28,18 @@ namespace StatTierMaker.API.Tests.TierFactories.Parameters
         {
             //arrange
             ITierParameterFactory tierEntityParameterFactory = new TierParameterFactory(factoryLogger, validator);
-            var tierParameterTemplate = new TierParameterTemplate()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Coefficient = 1,
-            };
-            TierValue tierValue = TierValue.A;
+            var name = "Test name";
+            var description = "Test description";
+            var coefficient = 1;
+            TierValue tierValue = TierValue.F;
             //act
-            var result = await tierEntityParameterFactory.CreateAsync(tierParameterTemplate, tierValue);
+            var result = await tierEntityParameterFactory.CreateAsync(name, description, coefficient);
             //assert
             Assert.NotNull(result);
-            Assert.Equal(tierParameterTemplate.Name, result.Name);
-            Assert.Equal(tierParameterTemplate.Description, result.Description);
+            Assert.Equal(name, result.Name);
+            Assert.Equal(description, result.Description);
             Assert.Equal(tierValue, result.Value);
-            Assert.Equal(tierParameterTemplate.Coefficient, result.Coefficient);
+            Assert.Equal(coefficient, result.Coefficient);
         }
     }
 }

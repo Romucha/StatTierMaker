@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.TierFactories.Entities;
 using StatTierMaker.API.TierFactories.Parameters;
-using StatTierMaker.API.TierTemplateFactories.Parameters;
-using StatTierMaker.API.TierTemplates;
+using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
@@ -37,9 +36,9 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
             ITierParameterFactory tierParameterTemplateFactory = new TierParameterFactory(parameterTemplateFactoryLogger, validator);
             ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator, tierParameterTemplateFactory);
             //act
-            var result = await tierEntityFactory.CreateAsync(name, description, new TierEntityTemplate()
+            var result = await tierEntityFactory.CreateAsync(name, description, new List<TierParameter>()
             {
-                TierParameterTemplates = new List<TierParameterTemplate>()
+                new TierParameter()
             });
             //assert
             Assert.NotNull(result);
@@ -57,9 +56,10 @@ namespace StatTierMaker.API.Tests.TierFactories.Entities
             ITierParameterFactory tierParameterTemplateFactory = new TierParameterFactory(parameterTemplateFactoryLogger, validator);
             ITierEntityFactory tierEntityFactory = new TierEntityFactory(factorylogger, validator, tierParameterTemplateFactory);
             //act & assert
-            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityFactory.CreateAsync(name, description, new TierEntityTemplate()
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityFactory.CreateAsync(name, description, new List<TierParameter>()
             {
-                TierParameterTemplates = new List<TierParameterTemplate>()
+                new TierParameter(),
+                new TierParameter(),
             }));
         }
 

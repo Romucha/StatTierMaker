@@ -1,5 +1,4 @@
 ﻿using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +17,8 @@ namespace StatTierMaker.API.TierFactories.Entities
         /// </summary>
         /// <param name="name">Name of a new entity.</param>
         /// <param name="description">Description of a new entity.</param>
-        /// <param name="tierEntityTemplate">Template of a tier entity.</param>
+        /// <param name="tierParameters">Parameters of a new entity.</param>
         /// <returns></returns>
-        Task<TierEntity> CreateAsync(string? name, string? description, TierEntityTemplate tierEntityTemplate);
+        Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters);
     }
 }

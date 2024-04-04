@@ -1,5 +1,4 @@
 ﻿using StatTierMaker.API.Tiers;
-using StatTierMaker.API.TierTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +15,9 @@ namespace StatTierMaker.API.TierFactories.Lists
         /// <summary>
         /// Creates tier list.
         /// </summary>
-        /// <param name="tierListTemplate">Template of a tier list.</param>
+        /// <param name="name">Name of tier list.</param>
+        /// <param name="description">Description of tier list.</param>
         /// <returns></returns>
-        Task<TierList> CreateAsync(TierListTemplate tierListTemplate);
+        Task<TierList> CreateAsync(string? name, string? description);
     }
 }
