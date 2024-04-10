@@ -5,14 +5,16 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.App", "StatTierMaker.App\StatTierMaker.App.csproj", "{FB4DD9B2-931F-4C9E-9183-27D3BE375730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.API", "StatTierMaker.API\StatTierMaker.API.csproj", "{7B8BA4B4-0EC2-4BD7-A233-81AAD74F2DA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.API", "StatTierMaker.API\StatTierMaker.API.csproj", "{7B8BA4B4-0EC2-4BD7-A233-81AAD74F2DA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.API.Tests", "StatTierMaker.API.Tests\StatTierMaker.API.Tests.csproj", "{2A7C202B-9FE8-4F3D-AEB9-5719C43E9487}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.API.Tests", "StatTierMaker.API.Tests\StatTierMaker.API.Tests.csproj", "{2A7C202B-9FE8-4F3D-AEB9-5719C43E9487}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{A39AB946-5CC4-4772-808B-F8E243AE12CE}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.Db", "StatTierMaker.Db\StatTierMaker.Db.csproj", "{EC5E6238-F489-4D73-A26F-906923C385B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{2A7C202B-9FE8-4F3D-AEB9-5719C43E9487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A7C202B-9FE8-4F3D-AEB9-5719C43E9487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A7C202B-9FE8-4F3D-AEB9-5719C43E9487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5E6238-F489-4D73-A26F-906923C385B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5E6238-F489-4D73-A26F-906923C385B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5E6238-F489-4D73-A26F-906923C385B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5E6238-F489-4D73-A26F-906923C385B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
