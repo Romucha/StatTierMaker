@@ -19,6 +19,6 @@ namespace StatTierMaker.API.TierFactories.Entities
         /// <param name="description">Description of a new entity.</param>
         /// <param name="tierParameters">Parameters of a new entity.</param>
         /// <returns></returns>
-        Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters);
+        Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters, CancellationToken token = default);
     }
 }

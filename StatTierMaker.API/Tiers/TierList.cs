@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StatTierMaker.API.Attributes;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StatTierMaker.API.Tiers;
@@ -29,10 +30,13 @@ public class TierList
     /// <summary>
     /// Collection of tiers.
     /// </summary>
+    [Required]
+    [CollectionNotEmpty]
     public ICollection<Tier>? Tiers { get; set; }
 
     /// <summary>
     /// List of all entities that belong to tier list.
     /// </summary>
+    [Required]
     public ICollection<TierEntity>? Entities { get; set; }
 }

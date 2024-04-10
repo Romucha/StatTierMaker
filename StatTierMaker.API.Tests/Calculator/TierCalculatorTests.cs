@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Tests.TestData.Entities;
 using StatTierMaker.API.Tests.TestData.Tiers;
+using System.ComponentModel.DataAnnotations;
 
 namespace StatTierMaker.API.Tests.Calculator
 {
@@ -31,15 +32,14 @@ namespace StatTierMaker.API.Tests.Calculator
         {
             //arrange
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
-            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator);
-            var tierEntities = EntityCollections.Normal();
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
             TierList tierList = new TierList()
             {
                 Name = "Test name",
                 Description = "Test description",
                 Tiers = TierCollections.Normal().ToList(),
-                Entities = tierEntities.ToList()
+                Entities = EntityCollections.Normal().ToList()
             };
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             //act
@@ -58,6 +58,120 @@ namespace StatTierMaker.API.Tests.Calculator
                 Assert.NotNull(tier);
                 Assert.NotNull(tier.Entities);
             }
+        }
+
+        [Fact]
+        public async Task CalculateAsync_Invalid()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.WithInvalidElements().ToList(),
+                Entities = EntityCollections.WithInvalidElements().ToList()
+            };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async() => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_EmptyEntityCollection()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.WithInvalidElements().ToList(),
+                Entities = EntityCollections.Empty().ToList()
+            };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_EmptyTierCollection()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Empty().ToList(),
+                Entities = EntityCollections.Normal().ToList()
+            };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_NullEntityCollection()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Normal().ToList(),
+                Entities = (List<TierEntity>)EntityCollections.Null()
+            };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_NullTierCollection()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = (List<Tier>)TierCollections.Null(),
+                Entities = EntityCollections.Normal().ToList()
+            };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_NullTierList()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
+            ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
+
+            TierList tierList = null;
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            //act & assert
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token));
         }
     }
 }

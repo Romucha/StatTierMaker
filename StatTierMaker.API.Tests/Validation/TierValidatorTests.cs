@@ -26,6 +26,7 @@ namespace StatTierMaker.API.Tests.Validation
         {
             //arrange
             IValidator validator = new TierValidator(validatorLogger);
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             ValidationDummyModel model = new ValidationDummyModel()
             {
                 DummyNumber = dummyNumber,
@@ -34,7 +35,7 @@ namespace StatTierMaker.API.Tests.Validation
                 OptionalDummyString = optionalDummyString,
             };
             //act
-            var result = await validator.ValidateAsync(model);
+            var result = await validator.ValidateAsync(model, cancellationTokenSource.Token);
             //assert
             Assert.NotNull(result);
             Assert.Equal(model, result);
@@ -58,8 +59,9 @@ namespace StatTierMaker.API.Tests.Validation
                 DummyNumberMinimumExluded = numberMinimumExcluded,
                 RequiredDummyString = requiredString,
             };
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             //act & assert
-            await Assert.ThrowsAsync<ValidationException>(async () => await validator.ValidateAsync(model));
+            await Assert.ThrowsAsync<ValidationException>(async () => await validator.ValidateAsync(model, cancellationTokenSource.Token));
         }
     }
 }

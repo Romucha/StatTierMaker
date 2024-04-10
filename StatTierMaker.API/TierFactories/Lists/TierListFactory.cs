@@ -24,7 +24,7 @@ namespace StatTierMaker.API.TierFactories.Lists
             this.validator = validator;
         }
 
-        public async Task<TierList> CreateAsync(string? name, string? description)
+        public async Task<TierList> CreateAsync(string? name, string? description, CancellationToken token = default)
         {
             try
             {
@@ -38,7 +38,6 @@ namespace StatTierMaker.API.TierFactories.Lists
                 };
                 foreach (var t in Enum.GetValues<TierValue>())
                 {
-                    //TO-DO: add tier factory
                     result.Tiers.Add(new Tier()
                     {
                         Name = t.ToString(),
@@ -47,7 +46,7 @@ namespace StatTierMaker.API.TierFactories.Lists
                         Entities = new List<TierEntity>()
                     });
                 }
-                return await validator.ValidateAsync(result);
+                return await validator.ValidateAsync(result, token);
             }
             catch (Exception ex) 
             {

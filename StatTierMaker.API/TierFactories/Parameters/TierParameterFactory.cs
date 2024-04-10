@@ -22,7 +22,7 @@ namespace StatTierMaker.API.TierFactories.Parameters
             this.logger = logger;
             this.validator = validator;
         }
-        public async Task<TierParameter> CreateAsync(string? name, string? descripton, double coefficient)
+        public async Task<TierParameter> CreateAsync(string? name, string? descripton, double coefficient, CancellationToken token)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace StatTierMaker.API.TierFactories.Parameters
                     Name = name,
                     Description = descripton,
                     Coefficient = coefficient
-                });
+                }, token);
 
             }
             catch (Exception ex) 

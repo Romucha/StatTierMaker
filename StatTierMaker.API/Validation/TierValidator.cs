@@ -17,7 +17,7 @@ namespace StatTierMaker.API.Validation
             this.logger = logger;
         }
 
-        public async Task<T> ValidateAsync<T>(T? value)
+        public async Task<T> ValidateAsync<T>(T? value, CancellationToken token = default)
         {
             try
             {

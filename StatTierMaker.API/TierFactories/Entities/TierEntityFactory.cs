@@ -26,7 +26,7 @@ namespace StatTierMaker.API.TierFactories.Entities
             this.parameterFactory = parameterFactory;
         }
 
-        public async Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters)
+        public async Task<TierEntity> CreateAsync(string? name, string? description, IEnumerable<TierParameter> tierParameters, CancellationToken token = default)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace StatTierMaker.API.TierFactories.Entities
                     Name = name,
                     Description = description,
                     TierEntityParameters = new List<TierParameter>(tierParameters)
-                });
+                }, token);
             }
             catch (Exception ex)
             {

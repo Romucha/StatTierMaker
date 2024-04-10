@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace StatTierMaker.API.Calculator
     {
         private readonly ILogger<TierCalculator> logger;
         private readonly IEntityWeightCalculator entityWeightCalculator;
+        private readonly IValidator validator;
 
-        public TierCalculator(ILogger<TierCalculator> logger, IEntityWeightCalculator entityWeightCalculator)
+        public TierCalculator(ILogger<TierCalculator> logger, IEntityWeightCalculator entityWeightCalculator, IValidator validator)
         {
             this.logger = logger;
             this.entityWeightCalculator = entityWeightCalculator;
+            this.validator = validator;
         }
 
         public async Task<TierList> CalculateAsync(TierList tierList, CancellationToken cancellationToken)
@@ -30,6 +33,7 @@ namespace StatTierMaker.API.Calculator
              * */
             try
             {
+                var validTierList = await validator.ValidateAsync(tierList, cancellationToken);
                 logger.LogInformation($"Calculating tier list with name: {tierList.Name}...");
                 var weightedEnities = new List<WeightedEnity>();
 

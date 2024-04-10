@@ -19,6 +19,6 @@ namespace StatTierMaker.API.TierFactories.Parameters
         /// <param name="description">Description of parameter.</param>
         /// <param name="coefficient">Coefficient of parameter.</param>
         /// <returns></returns>
-        Task<TierParameter> CreateAsync(string? name, string? description, double coefficient);
+        Task<TierParameter> CreateAsync(string? name, string? description, double coefficient, CancellationToken token = default);
     }
 }
