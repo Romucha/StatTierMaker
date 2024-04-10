@@ -24,7 +24,12 @@ namespace StatTierMaker.Db
         public TierDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             this.configuration = configuration;
-            Database.Migrate();
+            Database.EnsureCreated();
+            if (Database.IsRelational())
+            {
+                Database.Migrate();
+            }
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
