@@ -33,7 +33,7 @@ namespace StatTierMaker.API.Calculator
                 logger.LogInformation($"Calculating tier list with name: {tierList.Name}...");
                 var weightedEnities = new List<WeightedEnity>();
 
-                foreach (var item in tierList.Tiers.SelectMany(c => c.Entities)) 
+                foreach (var item in tierList.Entities) 
                 {
                     weightedEnities.Add(new WeightedEnity()
                     {
@@ -67,10 +67,13 @@ namespace StatTierMaker.API.Calculator
                     {
                         if (item.Weight >= interval.Minimum && item.Weight < interval.Maximum)
                         {
-                            item.TierEntity.Tier = new Tier()
+                            var tier = tierList.Tiers?.FirstOrDefault(c => c.Value == interval.Value);
+                            if (tier != null)
                             {
-                                Value = interval.Value
-                            };
+                                item.TierEntity.Tier = tier;
+                                tier.Entities?.Add(item.TierEntity);
+                            }
+
                             break;
                         }
                     }
@@ -87,11 +90,6 @@ namespace StatTierMaker.API.Calculator
             {
                 logger.LogInformation("Calculation done.");
             }
-        }
-
-        public Task<TierList> CalculateAsync(TierList tierList, IEnumerable<TierEntity> entities, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
         }
     }
 }

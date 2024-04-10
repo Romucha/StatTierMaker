@@ -29,4 +29,9 @@ public class TierList
     /// Collection of tiers.
     /// </summary>
     public ICollection<Tier>? Tiers { get; set; }
+
+    /// <summary>
+    /// List of all entities that belong to tier list.
+    /// </summary>
+    public ICollection<TierEntity> Entities { get; set; }
 }

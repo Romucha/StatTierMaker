@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Tests.TestData.Entities;
+using StatTierMaker.API.Tests.TestData.Tiers;
 
 namespace StatTierMaker.API.Tests.Calculator
 {
@@ -37,12 +38,26 @@ namespace StatTierMaker.API.Tests.Calculator
             {
                 Name = "Test name",
                 Description = "Test description",
-                Tiers = new List<Tier>()
+                Tiers = TierCollections.Normal().ToList(),
+                Entities = tierEntities.ToList()
             };
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             //act
-            await tierCalculator.CalculateAsync(tierList, tierEntities, cancellationTokenSource.Token);
+            var result = await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token);
             //assert
+            Assert.NotNull(result);
+            Assert.NotNull(result.Tiers);
+            Assert.NotNull(result.Entities);
+            foreach (var entity in tierList.Entities)
+            {
+                Assert.NotNull(entity);
+                Assert.NotNull(entity.Tier);
+            }
+            foreach (var tier in result.Tiers) 
+            {
+                Assert.NotNull(tier);
+                Assert.NotNull(tier.Entities);
+            }
         }
     }
 }

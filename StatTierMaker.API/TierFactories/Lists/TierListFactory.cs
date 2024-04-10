@@ -33,7 +33,8 @@ namespace StatTierMaker.API.TierFactories.Lists
                 {
                     Name = name,
                     Description = description,
-                    Tiers = new List<Tier>()
+                    Tiers = new List<Tier>(),
+                    Entities = new List<TierEntity>()
                 };
                 foreach (var t in Enum.GetValues<TierValue>())
                 {

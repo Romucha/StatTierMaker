@@ -14,17 +14,53 @@ namespace StatTierMaker.API.Tests.TestData.Tiers
         {
             yield return new Tier()
             {
-                Name = "Tier 1",
-                Description = "Description 1",
-                Entities = new List<TierEntity>(EntityCollections.Normal()),
+                Name = "A Tier",
+                Description = "Description A",
+                Entities = [],
                 Value = TierValue.A
             };
             yield return new Tier()
             {
-                Name = "Tier 2",
-                Description = "Description 2",
-                Entities = new List<TierEntity>(EntityCollections.Normal()),
+                Name = "B Tier",
+                Description = "Description B",
+                Entities = [],
                 Value = TierValue.B
+            };
+            yield return new Tier()
+            {
+                Name = "C Tier",
+                Description = "Description C",
+                Entities = [],
+                Value = TierValue.C
+            };
+            yield return new Tier()
+            {
+                Name = "D Tier",
+                Description = "Description D",
+                Entities = [],
+                Value = TierValue.D
+            };
+            yield return new Tier()
+            {
+                Name = "E Tier",
+                Description = "Description E",
+                Entities = [],
+                Value = TierValue.E
+            };
+            yield return new Tier()
+            {
+                Name = "F Tier",
+                Description = "Description F",
+                Entities = [],
+                Value = TierValue.F
+            };
+
+            yield return new Tier()
+            {
+                Name = "S Tier",
+                Description = "Description S",
+                Entities = [],
+                Value = TierValue.S
             };
         }
 

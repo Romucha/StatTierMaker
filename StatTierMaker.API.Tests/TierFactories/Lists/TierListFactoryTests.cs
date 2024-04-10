@@ -35,6 +35,10 @@ namespace StatTierMaker.API.Tests.TierFactories.Lists
             Assert.NotNull(result);
             Assert.Equal(name, result.Name);
             Assert.Equal(description, result.Description);
+            Assert.NotNull(result.Tiers);
+            Assert.NotEmpty(result.Tiers);
+            Assert.NotNull(result.Entities);
+            Assert.Empty(result.Entities);
         }
     }
 }
