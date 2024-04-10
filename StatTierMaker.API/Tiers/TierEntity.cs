@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Id.
         /// </summary>
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>
@@ -29,6 +30,12 @@ namespace StatTierMaker.API.Tiers
         /// </summary>
         [Required(AllowEmptyStrings = true)]
         public string? Description { get; set; }
+
+        /// <summary>
+        /// Id of a linked tier.
+        /// </summary>
+        [ForeignKey(nameof(Tier))]
+        public int TierId { get; set; }
 
         /// <summary>
         /// A tier that this entity belongs to.

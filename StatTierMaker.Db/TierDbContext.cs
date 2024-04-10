@@ -15,6 +15,12 @@ namespace StatTierMaker.Db
 
         public DbSet<TierList> TierLists { get; set; }
 
+        public DbSet<Tier> Tiers { get; set; }
+
+        public DbSet<TierEntity> TierEntities { get; set; }
+
+        public DbSet<TierParameter> TierParameters { get; set; }
+
         public TierDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             this.configuration = configuration;
