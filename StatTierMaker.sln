@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.Db", "StatTierMaker.Db\StatTierMaker.Db.csproj", "{EC5E6238-F489-4D73-A26F-906923C385B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.Db.Tests", "StatTierMaker.Db.Tests\StatTierMaker.Db.Tests.csproj", "{70941887-677A-4282-87E6-E45A33FBB40B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{EC5E6238-F489-4D73-A26F-906923C385B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5E6238-F489-4D73-A26F-906923C385B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5E6238-F489-4D73-A26F-906923C385B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70941887-677A-4282-87E6-E45A33FBB40B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70941887-677A-4282-87E6-E45A33FBB40B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70941887-677A-4282-87E6-E45A33FBB40B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70941887-677A-4282-87E6-E45A33FBB40B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
