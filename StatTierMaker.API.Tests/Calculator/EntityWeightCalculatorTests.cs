@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using StatTierMaker.Tests.Common.TestData.Entities;
+
 namespace StatTierMaker.API.Tests.Calculator
 {
     public class EntityWeightCalculatorTests
@@ -28,40 +30,12 @@ namespace StatTierMaker.API.Tests.Calculator
         {
             //arrange
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(calculatorLogger, validator);
-            var entity = new TierEntity()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                TierEntityParameters = new List<TierParameter>()
-                {
-                    new TierParameter()
-                    {
-                        Name = "Parameter 1",
-                        Description = "Description 1",
-                        Coefficient = 1,
-                        Value = TierValue.S,
-                    },
-                    new TierParameter()
-                    {
-                        Name = "Parameter 2",
-                        Description = "Description 2",
-                        Coefficient = 1,
-                        Value = TierValue.E,
-                    },
-                    new TierParameter()
-                    {
-                        Name = "Parameter 3",
-                        Description = "Description 3",
-                        Coefficient = 3,
-                        Value = TierValue.E,
-                    }
-                }
-            };
+            var entity = SingularEntities.Normal();
             CancellationTokenSource source = new CancellationTokenSource();
             //act
             var weight = await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token);
             //assert
-            Assert.Equal(10, weight);
+            Assert.Equal(12, weight);
         }
 
         [Fact]
@@ -69,24 +43,33 @@ namespace StatTierMaker.API.Tests.Calculator
         {
             //arrange
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(calculatorLogger, validator);
-            var entity = new TierEntity()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                TierEntityParameters = new List<TierParameter>()
-                {
-                    new TierParameter()
-                    {
-                        Name = null,
-                        Description = "Description 1",
-                        Coefficient = 1,
-                        Value = TierValue.S,
-                    }
-                }
-            };
+            var entity = SingularEntities.Invalid();
             CancellationTokenSource source = new CancellationTokenSource();
             //act & assert
             await Assert.ThrowsAsync<ValidationException>(async () => await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token));
+        }
+
+        [Fact]
+        public async Task CalclulateWeightAsync_ThrowsException_WhenEntityIsDefault()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(calculatorLogger, validator);
+            var entity = SingularEntities.Default();
+            CancellationTokenSource source = new CancellationTokenSource();
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token));
+        }
+
+
+        [Fact]
+        public async Task CalclulateWeightAsync_ThrowsException_WhenEntityIsNull()
+        {
+            //arrange
+            IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(calculatorLogger, validator);
+            var entity = SingularEntities.Null();
+            CancellationTokenSource source = new CancellationTokenSource();
+            //act & assert
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await entityWeightCalculator.CalclulateWeightAsync(entity, source.Token));
         }
     }
 }

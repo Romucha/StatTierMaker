@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.API.Tests.TestData.Entities
+namespace StatTierMaker.Tests.Common.TestData.Entities
 {
-    internal static class SingularEntities
+    public static class SingularEntities
     {
         public static TierEntity Normal()
         {

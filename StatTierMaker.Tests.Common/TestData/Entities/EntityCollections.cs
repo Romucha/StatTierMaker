@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.API.Tests.TestData.Entities
+namespace StatTierMaker.Tests.Common.TestData.Entities
 {
     /// <summary>
     /// Collections of entities for usage in different tests.
     /// </summary>
-    internal static class EntityCollections
+    public static class EntityCollections
     {
         public static IEnumerable<TierEntity> Normal()
         {

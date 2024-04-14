@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Validation;
 using StatTierMaker.Db.Repositories;
+using StatTierMaker.Tests.Common.TestData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,7 @@ namespace StatTierMaker.Db.Tests.Repositories
         public async Task GetAsync_Normal()
         {
             //arrange
-            var originalTierEntity = new TierEntity()
-            {
-                Name = "Test",
-                Description = "Test",
-                TierEntityParameters = []
-            };
+            var originalTierEntity = SingularEntities.Normal();
             await TierDbContext.TierEntities.AddAsync(originalTierEntity);
             await TierDbContext.SaveChangesAsync();
             //act
@@ -45,27 +41,7 @@ namespace StatTierMaker.Db.Tests.Repositories
         public async Task GetAllAsync_Normal()
         {
             //arrange
-            var originalTierEntityList = new List<TierEntity>()
-            {
-                new TierEntity()
-                {
-                    Name = "Test 1",
-                    Description = "Test 1",
-                    TierEntityParameters = []
-                },
-                new TierEntity()
-                {
-                    Name = "Test 2",
-                    Description = "Test 2",
-                    TierEntityParameters = []
-                },
-                new TierEntity()
-                {
-                    Name = "Test 3",
-                    Description = "Test 3",
-                    TierEntityParameters = []
-                }
-            };
+            var originalTierEntityList = EntityCollections.Normal();
             await TierDbContext.TierEntities.AddRangeAsync(originalTierEntityList);
             await TierDbContext.SaveChangesAsync();
             //act

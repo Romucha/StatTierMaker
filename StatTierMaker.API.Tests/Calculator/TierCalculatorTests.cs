@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StatTierMaker.API.Tiers;
-using StatTierMaker.API.Tests.TestData.Entities;
-using StatTierMaker.API.Tests.TestData.Tiers;
 using System.ComponentModel.DataAnnotations;
+using StatTierMaker.Tests.Common.TestData.Tiers;
+using StatTierMaker.Tests.Common.TestData.Entities;
 
 namespace StatTierMaker.API.Tests.Calculator
 {

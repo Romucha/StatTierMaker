@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.API.Tests.TestData.Parameters
+namespace StatTierMaker.Tests.Common.TestData.Parameters
 {
-    internal static class ParameterCollections
+    public static class ParameterCollections
     {
         public static IEnumerable<TierParameter> Normal()
         {

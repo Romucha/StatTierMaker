@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StatTierMaker.Db\StatTierMaker.Db.csproj" />
+    <ProjectReference Include="..\StatTierMaker.Tests.Common\StatTierMaker.Tests.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

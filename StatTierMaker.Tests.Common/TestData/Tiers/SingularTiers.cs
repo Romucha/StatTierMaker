@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.API.Tests.TestData.Tiers
+namespace StatTierMaker.Tests.Common.TestData.Tiers
 {
-    internal static class SingularTiers
+    public static class SingularTiers
     {
         public static Tier Normal()
         {
