@@ -11,6 +11,7 @@ using StatTierMaker.API.Tiers;
 using System.ComponentModel.DataAnnotations;
 using StatTierMaker.Tests.Common.TestData.Tiers;
 using StatTierMaker.Tests.Common.TestData.Entities;
+using StatTierMaker.Tests.Common.TestData.Lists;
 
 namespace StatTierMaker.API.Tests.Calculator
 {
@@ -34,13 +35,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = TierCollections.Normal().ToList(),
-                Entities = EntityCollections.Normal().ToList()
-            };
+            TierList tierList = SingularLists.Normal();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             //act
             var result = await tierCalculator.CalculateAsync(tierList, cancellationTokenSource.Token);
@@ -67,13 +62,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = TierCollections.WithInvalidElements().ToList(),
-                Entities = EntityCollections.WithInvalidElements().ToList()
-            };
+            TierList tierList = SingularLists.Invalid();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert
@@ -87,13 +76,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = TierCollections.WithInvalidElements().ToList(),
-                Entities = EntityCollections.Empty().ToList()
-            };
+            TierList tierList = SingularLists.WithEmptyEntities();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert
@@ -107,13 +90,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = TierCollections.Empty().ToList(),
-                Entities = EntityCollections.Normal().ToList()
-            };
+            TierList tierList = SingularLists.WithEmptyTiers();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert
@@ -127,13 +104,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = TierCollections.Normal().ToList(),
-                Entities = (List<TierEntity>)EntityCollections.Null()
-            };
+            TierList tierList = SingularLists.WithNullEntities();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert
@@ -147,13 +118,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = new TierList()
-            {
-                Name = "Test name",
-                Description = "Test description",
-                Tiers = (List<Tier>)TierCollections.Null(),
-                Entities = EntityCollections.Normal().ToList()
-            };
+            TierList tierList = SingularLists.WithNullTiers();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert
@@ -167,7 +132,7 @@ namespace StatTierMaker.API.Tests.Calculator
             IEntityWeightCalculator entityWeightCalculator = new EntityWeightCalculator(entityCalculatorLogger, validator);
             ITierCalculator tierCalculator = new TierCalculator(calculatorLogger, entityWeightCalculator, validator);
 
-            TierList tierList = null;
+            TierList tierList = SingularLists.Null();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
             //act & assert

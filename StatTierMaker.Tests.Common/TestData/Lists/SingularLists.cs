@@ -43,5 +43,51 @@ namespace StatTierMaker.Tests.Common.TestData.Lists
         {
             return null;
         }
+
+        public static TierList WithEmptyTiers()
+        {
+            return new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Empty().ToList(),
+                Entities = EntityCollections.Normal().ToList()
+            };
+        }
+
+
+        public static TierList WithNullTiers()
+        {
+            return new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Null()?.ToList(),
+                Entities = EntityCollections.Normal().ToList()
+            };
+        }
+
+
+        public static TierList WithEmptyEntities()
+        {
+            return new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Normal().ToList(),
+                Entities = EntityCollections.Empty().ToList()
+            };
+        }
+
+        public static TierList WithNullEntities()
+        {
+            return new TierList()
+            {
+                Name = "Test name",
+                Description = "Test description",
+                Tiers = TierCollections.Normal().ToList(),
+                Entities = EntityCollections.Null()?.ToList()
+            };
+        }
     }
 }
