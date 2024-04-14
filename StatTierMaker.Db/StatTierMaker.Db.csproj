@@ -22,4 +22,8 @@
     <ProjectReference Include="..\StatTierMaker.API\StatTierMaker.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
 </Project>
