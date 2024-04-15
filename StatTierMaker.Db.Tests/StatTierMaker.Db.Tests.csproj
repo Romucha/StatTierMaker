@@ -34,4 +34,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Parameters\" />
+    <Folder Include="Repositories\Tiers\" />
+  </ItemGroup>
+
 </Project>

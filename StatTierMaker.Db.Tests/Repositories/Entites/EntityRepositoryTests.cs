@@ -15,14 +15,10 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
 {
     public partial class EntityRepositoryTests : BaseRepositoryTests<TierEntity>
     {
-        public EntityRepositoryTests()
+        public EntityRepositoryTests() : base()
         {
             ILogger<Repository<TierEntity>> logger = new NullLogger<Repository<TierEntity>>();
-            ILogger<TierValidator> validationLogger = new NullLogger<TierValidator>();
-            IValidator validator = new TierValidator(validationLogger);
             Repository = new Repository<TierEntity>(TierDbContext, logger, validator);
         }
-
-        //TBD
     }
 }
