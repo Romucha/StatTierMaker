@@ -18,7 +18,8 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
             //act
             await Repository.AddAsync(entity);
             //assert
-            Assert.NotNull(TierDbContext.TierEntities.Entry(entity));
+            Assert.NotEmpty(TierDbContext.TierEntities);
+            Assert.NotEmpty(TierDbContext.TierParameters);
         }
 
         [Fact]
@@ -28,7 +29,8 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
             var entity = SingularEntities.Invalid();
             //act & assert
             await Assert.ThrowsAsync<ValidationException>(async () => await Repository.AddAsync(entity));
-            Assert.Equal(0, TierDbContext.TierEntities.Count());
+            Assert.Empty(TierDbContext.TierEntities);
+            Assert.Empty(TierDbContext.TierParameters);
         }
 
         [Fact]
@@ -38,7 +40,8 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
             var entity = SingularEntities.Default();
             //act & assert
             await Assert.ThrowsAsync<ValidationException>(async () => await Repository.AddAsync(entity));
-            Assert.Equal(0, TierDbContext.TierEntities.Count());
+            Assert.Empty(TierDbContext.TierEntities);
+            Assert.Empty(TierDbContext.TierParameters);
         }
 
 
@@ -49,7 +52,8 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
             var entity = SingularEntities.Null();
             //act & assert
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await Repository.AddAsync(entity));
-            Assert.Equal(0, TierDbContext.TierEntities.Count());
+            Assert.Empty(TierDbContext.TierEntities);
+            Assert.Empty(TierDbContext.TierParameters);
         }
     }
 }
