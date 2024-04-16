@@ -26,7 +26,7 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
-        public async Task DeleteAsync_ThrowsError_WhenIdIsInvalid(int id)
+        public async Task DeleteAsync_ThrowsException_WhenIdIsInvalid(int id)
         {
             //arrange
             var originalTierEntity = SingularEntities.Normal();
