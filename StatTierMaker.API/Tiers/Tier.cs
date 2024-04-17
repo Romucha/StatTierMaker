@@ -22,11 +22,13 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Name of tier.
         /// </summary>
+        [Required]
         public string? Name { get; set; }
 
         /// <summary>
         /// Description of a tier.
         /// </summary>
+        [Required(AllowEmptyStrings = true)]
         public string? Description { get; set; }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace StatTierMaker.API.Tiers
         /// <summary>
         /// Collection of tier entities that belong to this tier.
         /// </summary>
+        [Required]
         public ICollection<TierEntity>? Entities { get; set; }
 
         /// <summary>
