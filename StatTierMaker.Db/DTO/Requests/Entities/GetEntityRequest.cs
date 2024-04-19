@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Db.DTO.Requests.Parameters
+namespace StatTierMaker.Db.DTO.Requests.Entities
 {
-    public record UpdateParameterRequest
+    public record GetEntityRequest
     {
     }
 }

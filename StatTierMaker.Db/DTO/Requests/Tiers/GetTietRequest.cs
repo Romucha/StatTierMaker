@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Db.Tests
+namespace StatTierMaker.Db.DTO.Requests.Tiers
 {
-    public interface IUnitOfWork
+    public record GetTietRequest
     {
-
     }
 }

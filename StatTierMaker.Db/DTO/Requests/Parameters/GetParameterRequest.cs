@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Db.DTO.Requests.Parameters
 {
-    public record UpdateParameterRequest
+    public record GetParameterRequest
     {
     }
 }
