@@ -8,5 +8,8 @@ namespace StatTierMaker.Db.DTO.Requests.Parameters
 {
     public record AddTierParameterRequest
     {
+        public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }
