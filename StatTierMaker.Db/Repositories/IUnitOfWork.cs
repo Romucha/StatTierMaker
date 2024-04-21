@@ -1,9 +1,9 @@
 ﻿using StatTierMaker.API.Tiers;
 using StatTierMaker.Db.DTO.Requests.Entities;
 using StatTierMaker.Db.DTO.Requests.Tiers;
-using StatTierMaker.Db.DTO.Responces.Entities;
-using StatTierMaker.Db.DTO.Responces.Lists;
-using StatTierMaker.Db.DTO.Responces.Tiers;
+using StatTierMaker.Db.DTO.Responses.Entities;
+using StatTierMaker.Db.DTO.Responses.Lists;
+using StatTierMaker.Db.DTO.Responses.Tiers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
