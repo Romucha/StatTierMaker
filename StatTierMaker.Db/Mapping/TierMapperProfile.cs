@@ -21,28 +21,40 @@ namespace StatTierMaker.Db.Mapping
         public TierMapperProfile() 
         {
             //lists
+            CreateMap<TierList, AddTierListResponse>().ReverseMap();
+            CreateMap<TierList, DeleteTierListResponse>().ReverseMap();
             CreateMap<TierList, GetTierListResponse>().ReverseMap();
+            CreateMap<TierList, UpdateTierListResponse>().ReverseMap();
             CreateMap<TierList, AddTierListRequest>().ReverseMap();
             CreateMap<TierList, GetTierListRequest>().ReverseMap();
             CreateMap<TierList, DeleteTierListRequest>().ReverseMap();
             CreateMap<TierList, UpdateTierListRequest>().ReverseMap();
 
             //tiers
+            CreateMap<Tier, AddTierResponse>().ReverseMap();
+            CreateMap<Tier, DeleteTierResponse>().ReverseMap();
             CreateMap<Tier, GetTierResponse>().ReverseMap();
+            CreateMap<Tier, UpdateTierResponse>().ReverseMap();
             CreateMap<Tier, AddTierRequest>().ReverseMap();
             CreateMap<Tier, GetTierRequest>().ReverseMap();
             CreateMap<Tier, DeleteTierRequest>().ReverseMap();
             CreateMap<Tier, UpdateTierRequest>().ReverseMap();
 
             //entities
+            CreateMap<TierEntity, AddTierEntityResponse>().ReverseMap();
+            CreateMap<TierEntity, DeleteTierEntityResponse>().ReverseMap();
             CreateMap<TierEntity, GetTierEntityResponse>().ReverseMap();
+            CreateMap<TierEntity, UpdateTierEntityResponse>().ReverseMap();
             CreateMap<TierEntity, AddTierEntityRequest>().ReverseMap();
             CreateMap<TierEntity, GetTierEntityRequest>().ReverseMap();
             CreateMap<TierEntity, DeleteTierEntityRequest>().ReverseMap();
             CreateMap<TierEntity, UpdateTierEntityRequest>().ReverseMap();
 
             //parameters
+            CreateMap<TierParameter, AddTierParameterResponse>().ReverseMap();
+            CreateMap<TierParameter, DeleteTierParameterResponse>().ReverseMap();
             CreateMap<TierParameter, GetTierParameterResponse>().ReverseMap();
+            CreateMap<TierParameter, UpdateTierParameterResponse>().ReverseMap();
             CreateMap<TierParameter, AddTierParameterRequest>().ReverseMap();
             CreateMap<TierParameter, GetTierParameterRequest>().ReverseMap();
             CreateMap<TierParameter, DeleteTierParameterRequest>().ReverseMap();
