@@ -8,5 +8,8 @@ namespace StatTierMaker.Db.DTO.Responses.Lists
 {
     public record DeleteTierListResponse
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

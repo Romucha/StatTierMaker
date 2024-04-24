@@ -8,5 +8,6 @@ namespace StatTierMaker.Db.DTO.Requests.Lists
 {
     public record GetTierListRequest
     {
+        public int Id { get; set; }
     }
 }

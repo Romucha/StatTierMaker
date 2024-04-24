@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Db.DTO.Responses.Lists
 {
-    public record GetTierListResponse
+    public record GetTierListsResponse
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }
