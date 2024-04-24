@@ -9,5 +9,7 @@ namespace StatTierMaker.Db.DTO.Responses.Parameters
     public record DeleteTierParameterResponse
     {
         public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

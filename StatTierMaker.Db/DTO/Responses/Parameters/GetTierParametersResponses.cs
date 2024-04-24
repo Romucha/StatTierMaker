@@ -9,6 +9,5 @@ namespace StatTierMaker.Db.DTO.Responses.Parameters
     public record GetTierParametersResponses
     {
         public IEnumerable<GetTierParametersResponse> Parameters { get; set; }
-
     }
 }
