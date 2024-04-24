@@ -8,5 +8,6 @@ namespace StatTierMaker.Db.DTO.Responses.Tiers
 {
     public record AddTierResponse
     {
+        public int Id { get; set; }
     }
 }
