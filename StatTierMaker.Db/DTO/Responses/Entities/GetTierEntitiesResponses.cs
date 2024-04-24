@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Db.DTO.Responses.Entities
 {
-    public record AddTierEntityResponse
+    public record GetTierEntitiesResponses
     {
-        public int Id { get; set; }
+        public IEnumerable<GetTierEntitiesResponse> Entities { get; set; }
     }
 }

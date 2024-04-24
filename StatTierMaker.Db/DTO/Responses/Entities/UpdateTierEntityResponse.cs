@@ -8,5 +8,6 @@ namespace StatTierMaker.Db.DTO.Responses.Entities
 {
     public record UpdateTierEntityResponse
     {
+        public int Id { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace StatTierMaker.Db.DTO.Requests.Entities
 {
     public record DeleteTierEntityRequest
     {
+        public int Id { get; set; }
     }
 }
