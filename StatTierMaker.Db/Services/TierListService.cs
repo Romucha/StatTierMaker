@@ -22,27 +22,27 @@ namespace StatTierMaker.Db.Services
 
         public async Task<GetTierListsResponse> GetTierLists(GetTierListsRequest getTierListsRequest, CancellationToken cancellationToken = default)
         {
-
+            throw new NotImplementedException();
         }
 
         public async Task<GetTierListResponse> GetTierList(GetTierListRequest getTierListRequest, CancellationToken cancellationToken = default)
         {
-
+            throw new NotImplementedException();
         }
 
         public async Task<AddTierListResponse> AddTierList(AddTierListRequest addTierListRequest, CancellationToken cancellationToken = default)
         {
-
+            throw new NotImplementedException();
         }
 
         public async Task<DeleteTierListResponse> DeleteTierList(DeleteTierListRequest deleteTierListRequest, CancellationToken cancellationToken = default)
         {
-
+            throw new NotImplementedException();
         }
 
         public async Task<UpdateTierListResponse> UpdateTierList(UpdateTierListRequest updateTierListRequest, CancellationToken cancellationToken = default)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
