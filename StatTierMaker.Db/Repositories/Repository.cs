@@ -67,7 +67,7 @@ namespace StatTierMaker.Db.Repositories
             try
             {
                 logger.LogInformation($"Getting list of {typeof(T)}...");
-                return await tierDbContext.Set<T>().ToListAsync();
+                return await tierDbContext.Set<T>().AsNoTracking().ToListAsync();
             }
             catch (Exception ex)
             {
