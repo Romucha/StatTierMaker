@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using StatTierMaker.API.Tiers;
 using System.ComponentModel.DataAnnotations;
-using StatTierMaker.Tests.Common.TestData.Tiers;
-using StatTierMaker.Tests.Common.TestData.Entities;
-using StatTierMaker.Tests.Common.TestData.Lists;
+using StatTierMaker.Tests.Common.TestAPIData.Tiers;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
+using StatTierMaker.Tests.Common.TestAPIData.Lists;
 
 namespace StatTierMaker.API.Tests.Calculator
 {

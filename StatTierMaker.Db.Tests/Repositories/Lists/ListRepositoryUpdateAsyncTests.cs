@@ -1,7 +1,7 @@
 ﻿using StatTierMaker.Db.Repositories;
-using StatTierMaker.Tests.Common.TestData.Entities;
-using StatTierMaker.Tests.Common.TestData.Lists;
-using StatTierMaker.Tests.Common.TestData.Parameters;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
+using StatTierMaker.Tests.Common.TestAPIData.Lists;
+using StatTierMaker.Tests.Common.TestAPIData.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

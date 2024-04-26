@@ -1,6 +1,6 @@
 ﻿using StatTierMaker.API.Tiers;
-using StatTierMaker.Tests.Common.TestData.Entities;
-using StatTierMaker.Tests.Common.TestData.Tiers;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
+using StatTierMaker.Tests.Common.TestAPIData.Tiers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Tests.Common.TestData.Lists
+namespace StatTierMaker.Tests.Common.TestAPIData.Lists
 {
     public static class TierListCollections
     {

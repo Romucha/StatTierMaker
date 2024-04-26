@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Validation;
+using StatTierMaker.Db.Mapping;
 using StatTierMaker.Db.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,8 @@ namespace StatTierMaker.Db.Tests.Services
         protected readonly IUnitOfWork UnitOfWork;
 
         protected readonly TierDbContext TierDbContext;
+
+        protected readonly IMapper Mapper;
 
         protected IValidator Validator { get; set; }
         protected BaseServiceTests()
@@ -36,6 +40,9 @@ namespace StatTierMaker.Db.Tests.Services
             IRepository<TierParameter> tierParameterRepository = new Repository<TierParameter>(TierDbContext, new NullLogger<Repository<TierParameter>>(), Validator);
 
             UnitOfWork = new UnitOfWork(tierRepository, tierListRepository, tierEntityRepository, tierParameterRepository, new NullLogger<UnitOfWork>(), TierDbContext);
+
+            MapperConfiguration mapperConfiguration = new MapperConfiguration(c => c.AddProfile(typeof(TierMapperProfile)));
+            Mapper = mapperConfiguration.CreateMapper();
         }
     }
 }

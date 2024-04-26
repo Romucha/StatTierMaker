@@ -1,4 +1,4 @@
-﻿using StatTierMaker.Tests.Common.TestData.Entities;
+﻿using StatTierMaker.Tests.Common.TestAPIData.Entities;
 using StatTierMaker.API.Tiers;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Tests.Common.TestData.Tiers
+namespace StatTierMaker.Tests.Common.TestAPIData.Tiers
 {
     public static class TierCollections
     {

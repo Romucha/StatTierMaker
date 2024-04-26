@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Tests.Common.TestData.Parameters
+namespace StatTierMaker.Tests.Common.TestAPIData.Parameters
 {
     public static class ParameterCollections
     {

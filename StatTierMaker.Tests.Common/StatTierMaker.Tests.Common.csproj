@@ -8,6 +8,29 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StatTierMaker.API\StatTierMaker.API.csproj" />
+    <ProjectReference Include="..\StatTierMaker.Db\StatTierMaker.Db.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestDbData\Entities\Get\" />
+    <Folder Include="TestDbData\Entities\Delete\" />
+    <Folder Include="TestDbData\Entities\Update\" />
+    <Folder Include="TestDbData\Entities\GetAll\" />
+    <Folder Include="TestDbData\Parameters\Add\" />
+    <Folder Include="TestDbData\Parameters\Delete\" />
+    <Folder Include="TestDbData\Parameters\GetAll\" />
+    <Folder Include="TestDbData\Parameters\Get\" />
+    <Folder Include="TestDbData\Parameters\Update\" />
+    <Folder Include="TestDbData\TierLists\Add\" />
+    <Folder Include="TestDbData\TierLists\Delete\" />
+    <Folder Include="TestDbData\TierLists\GetAll\" />
+    <Folder Include="TestDbData\TierLists\Get\" />
+    <Folder Include="TestDbData\TierLists\Update\" />
+    <Folder Include="TestDbData\Tiers\Add\" />
+    <Folder Include="TestDbData\Tiers\Delete\" />
+    <Folder Include="TestDbData\Tiers\GetAll\" />
+    <Folder Include="TestDbData\Tiers\Get\" />
+    <Folder Include="TestDbData\Tiers\Update\" />
   </ItemGroup>
 
 </Project>

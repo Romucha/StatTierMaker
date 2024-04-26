@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Tests.Common.TestData.Entities
+namespace StatTierMaker.Tests.Common.TestAPIData.Entities
 {
     public static class SingularEntities
     {

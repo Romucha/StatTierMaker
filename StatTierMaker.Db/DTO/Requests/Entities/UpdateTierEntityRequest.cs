@@ -17,6 +17,6 @@ namespace StatTierMaker.Db.DTO.Requests.Entities
 
         public int TierId { get; set; }
 
-        public ICollection<UpdateTierParameterRequest> Parameters { get; set; }
+        public ICollection<UpdateTierParameterRequest> TierEntityParameters { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StatTierMaker.Tests.Common.TestData.Parameters;
+using StatTierMaker.Tests.Common.TestAPIData.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

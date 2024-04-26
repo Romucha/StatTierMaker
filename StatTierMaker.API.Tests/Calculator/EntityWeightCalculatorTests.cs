@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using StatTierMaker.Tests.Common.TestData.Entities;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
 
 namespace StatTierMaker.API.Tests.Calculator
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging.Abstractions;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.Db.Repositories;
-using StatTierMaker.Tests.Common.TestData.Tiers;
+using StatTierMaker.Tests.Common.TestAPIData.Tiers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

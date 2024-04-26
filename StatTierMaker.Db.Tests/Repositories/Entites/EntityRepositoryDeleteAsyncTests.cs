@@ -1,4 +1,4 @@
-﻿using StatTierMaker.Tests.Common.TestData.Entities;
+﻿using StatTierMaker.Tests.Common.TestAPIData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

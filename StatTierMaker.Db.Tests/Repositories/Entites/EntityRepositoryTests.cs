@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Validation;
 using StatTierMaker.Db.Repositories;
-using StatTierMaker.Tests.Common.TestData.Entities;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

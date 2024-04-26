@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatTierMaker.Tests.Common.TestData.Tiers
+namespace StatTierMaker.Tests.Common.TestAPIData.Tiers
 {
     public static class SingularTiers
     {
