@@ -20,7 +20,7 @@ namespace StatTierMaker.Db.Tests.Repositories
 
         protected TierDbContext TierDbContext { get; set; }
 
-        protected IValidator validator { get; set; }
+        protected IValidator Validator { get; set; }
 
         public BaseRepositoryTests()
         {
@@ -30,7 +30,7 @@ namespace StatTierMaker.Db.Tests.Repositories
             TierDbContext = new TierDbContext(dbContextOptions, configuration);
 
             ILogger<TierValidator> validationLogger = new NullLogger<TierValidator>();
-            validator =  new TierValidator(validationLogger);
+            Validator =  new TierValidator(validationLogger);
         }
     }
 }

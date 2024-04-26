@@ -18,7 +18,7 @@ namespace StatTierMaker.Db.Tests.Repositories.Entites
         public EntityRepositoryTests() : base()
         {
             ILogger<Repository<TierEntity>> logger = new NullLogger<Repository<TierEntity>>();
-            Repository = new Repository<TierEntity>(TierDbContext, logger, validator);
+            Repository = new Repository<TierEntity>(TierDbContext, logger, Validator);
         }
     }
 }

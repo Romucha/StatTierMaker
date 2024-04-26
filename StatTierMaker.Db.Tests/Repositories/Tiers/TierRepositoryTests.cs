@@ -13,7 +13,7 @@ namespace StatTierMaker.Db.Tests.Repositories.Tiers
     {
         public TierRepositoryTests() : base()
         {
-            Repository = new Repository<Tier>(TierDbContext, new NullLogger<Repository<Tier>>(), validator);
+            Repository = new Repository<Tier>(TierDbContext, new NullLogger<Repository<Tier>>(), Validator);
         }
     }
 }

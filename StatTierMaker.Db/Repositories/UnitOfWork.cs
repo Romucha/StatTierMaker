@@ -18,9 +18,6 @@ namespace StatTierMaker.Db.Repositories
         private readonly IRepository<TierEntity> entityRepository;
         private readonly IRepository<TierParameter> parameterRepository;
         private readonly ILogger<UnitOfWork> logger;
-        private readonly ITierEntityFactory tierEntityFactory;
-        private readonly ITierListFactory tierListFactory;
-        private readonly ITierParameterFactory tierParameterFactory;
         private readonly TierDbContext tierDbContext;
 
         public UnitOfWork(
@@ -29,9 +26,6 @@ namespace StatTierMaker.Db.Repositories
             IRepository<TierEntity> entityRepository,
             IRepository<TierParameter> parameterRepository,
             ILogger<UnitOfWork> logger,
-            ITierEntityFactory tierEntityFactory,
-            ITierListFactory tierListFactory,
-            ITierParameterFactory tierParameterFactory,
             TierDbContext tierDbContext)
         {
             this.tierRepository = tierRepository;
@@ -39,9 +33,6 @@ namespace StatTierMaker.Db.Repositories
             this.entityRepository = entityRepository;
             this.parameterRepository = parameterRepository;
             this.logger = logger;
-            this.tierEntityFactory = tierEntityFactory;
-            this.tierListFactory = tierListFactory;
-            this.tierParameterFactory = tierParameterFactory;
             this.tierDbContext = tierDbContext;
         }
 

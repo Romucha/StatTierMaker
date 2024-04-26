@@ -13,7 +13,7 @@ namespace StatTierMaker.Db.Tests.Repositories.Parameters
     {
         public ParameterRepositoryTests() :base()
         {
-            Repository = new Repository<TierParameter>(TierDbContext, new NullLogger<Repository<TierParameter>>(), validator);
+            Repository = new Repository<TierParameter>(TierDbContext, new NullLogger<Repository<TierParameter>>(), Validator);
         }
     }
 }
