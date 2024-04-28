@@ -1,6 +1,7 @@
 ﻿using StatTierMaker.API.Tiers;
 using StatTierMaker.Db.Repositories;
 using StatTierMaker.Db.Services;
+using StatTierMaker.Tests.Common.TestAPIData.Entities;
 using StatTierMaker.Tests.Common.TestDbData.Entities.Delete;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task DeleteAsync_Normal()
         {
             //arrange
-            var tierEntity = new TierEntity()
-            {
-                Name = "Tier Entity Name",
-                Description = "Tier Entity Description",
-            };
+            var tierEntity = SingularEntities.Normal();
             await TierDbContext.TierEntities.AddAsync(tierEntity);
             await TierDbContext.SaveChangesAsync();
 
@@ -37,18 +34,14 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task DeleteAsync_ThrowsException_WhenRequestIsInvalid()
         {
             //arrange
-            var tierEntity = new TierEntity()
-            {
-                Name = "Tier Entity Name",
-                Description = "Tier Entity Description",
-            };
+            var tierEntity = SingularEntities.Normal();
             await TierDbContext.TierEntities.AddAsync(tierEntity);
             await TierDbContext.SaveChangesAsync();
 
             var id = TierDbContext.TierEntities.Entry(tierEntity).Entity.Id;
             var tierEntityRequest = SingularDeleteTierEntityRequests.Invalid();
             //act
-            await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
             //assert
             Assert.NotNull(await TierDbContext.TierEntities.FindAsync(id));
         }
@@ -57,18 +50,14 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task DeleteAsync_ThrowsException_WhenRequestIsDefault()
         {
             //arrange
-            var tierEntity = new TierEntity()
-            {
-                Name = "Tier Entity Name",
-                Description = "Tier Entity Description",
-            };
+            var tierEntity = SingularEntities.Normal();
             await TierDbContext.TierEntities.AddAsync(tierEntity);
             await TierDbContext.SaveChangesAsync();
 
             var id = TierDbContext.TierEntities.Entry(tierEntity).Entity.Id;
             var tierEntityRequest = SingularDeleteTierEntityRequests.Default();
             //act
-            await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
             //assert
             Assert.NotNull(await TierDbContext.TierEntities.FindAsync(id));
         }
@@ -77,18 +66,14 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task DeleteAsync_ThrowsException_WhenRequestIsNull()
         {
             //arrange
-            var tierEntity = new TierEntity()
-            {
-                Name = "Tier Entity Name",
-                Description = "Tier Entity Description",
-            };
+            var tierEntity = SingularEntities.Normal();
             await TierDbContext.TierEntities.AddAsync(tierEntity);
             await TierDbContext.SaveChangesAsync();
 
             var id = TierDbContext.TierEntities.Entry(tierEntity).Entity.Id;
             var tierEntityRequest = SingularDeleteTierEntityRequests.Null();
             //act
-            await Assert.ThrowsAsync<NullReferenceException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierEntityService.DeleteTierEntity(tierEntityRequest));
             //assert
             Assert.NotNull(await TierDbContext.TierEntities.FindAsync(id));
         }

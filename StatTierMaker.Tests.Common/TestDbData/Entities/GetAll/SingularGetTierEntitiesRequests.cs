@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Tests.Common.TestDbData.Entities.GetAll
 {
-    public static class SingularUpdateTierEntitiyRequests
+    public static class SingularGetAllTierEntitiesRequests
     {
-        public static GetTierEntitiesRequest Normal(int id)
+        public static GetTierEntitiesRequest Normal()
         {
             return new()
             {
