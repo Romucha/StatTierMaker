@@ -17,7 +17,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task AddAsync_Normal()
         {
             //arrange
-            var tierEntity = SingularAddEntityRequests.Normal();
+            var tierEntity = SingularAddTierEntityRequests.Normal();
 
             //act
             await tierEntityService.AddTierEntity(tierEntity);
@@ -31,7 +31,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task AddAsync_ThrowsException_WhenRequestIsInvalid()
         {
             //arrange
-            var tierEntity = SingularAddEntityRequests.Invalid();
+            var tierEntity = SingularAddTierEntityRequests.Invalid();
 
             //act
             await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.AddTierEntity(tierEntity));
@@ -41,7 +41,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task AddAsync_ThrowsException_WhenRequestIsDefault()
         {
             //arrange
-            var tierEntity = SingularAddEntityRequests.Default();
+            var tierEntity = SingularAddTierEntityRequests.Default();
 
             //act
             await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.AddTierEntity(tierEntity));
@@ -51,7 +51,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task AddAsync_ThrowsException_WhenRequestIsNull()
         {
             //arrange
-            var tierEntity = SingularAddEntityRequests.Null();
+            var tierEntity = SingularAddTierEntityRequests.Null();
 
             //act && assert
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierEntityService.AddTierEntity(tierEntity));

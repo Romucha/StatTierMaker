@@ -82,7 +82,7 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task DeleteTierEntityService(DeleteTierEntityRequest deleteTierEntityRequest, CancellationToken cancellationToken = default)
+        public async Task DeleteTierEntity(DeleteTierEntityRequest deleteTierEntityRequest, CancellationToken cancellationToken = default)
         {
             try
             {

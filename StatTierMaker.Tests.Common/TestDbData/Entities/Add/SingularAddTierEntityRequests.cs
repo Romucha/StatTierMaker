@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Tests.Common.TestDbData.Entities.Add
 {
-    public static class SingularAddEntityRequests
+    public static class SingularAddTierEntityRequests
     {
         public static AddTierEntityRequest Normal()
         {

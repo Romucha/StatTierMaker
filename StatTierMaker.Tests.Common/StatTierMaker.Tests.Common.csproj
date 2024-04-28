@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestDbData\Entities\Get\" />
-    <Folder Include="TestDbData\Entities\Delete\" />
-    <Folder Include="TestDbData\Entities\Update\" />
-    <Folder Include="TestDbData\Entities\GetAll\" />
     <Folder Include="TestDbData\Parameters\Add\" />
     <Folder Include="TestDbData\Parameters\Delete\" />
     <Folder Include="TestDbData\Parameters\GetAll\" />
