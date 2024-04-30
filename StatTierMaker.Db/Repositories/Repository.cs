@@ -104,8 +104,7 @@ namespace StatTierMaker.Db.Repositories
             {
                 logger.LogInformation($"Updating entity {entity}...");
                 var validEntity = await validator.ValidateAsync(entity);
-                var dbEntity = tierDbContext.Entry(entity);
-                dbEntity.State = EntityState.Modified;
+                tierDbContext.Entry(validEntity).State = EntityState.Modified;
                 await tierDbContext.SaveChangesAsync();
             }
             catch (Exception ex)

@@ -33,6 +33,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             Assert.Equal(entity.Name, response.Name);
             Assert.Equal(entity.Description, response.Description);
             Assert.Equal(entity.TierId, response.TierId);
+            Assert.Equal(entity.TierEntityParameters.Count, response.TierEntityParameters.Count);
         }
 
         [Fact]
@@ -44,10 +45,8 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             await TierDbContext.SaveChangesAsync();
 
             var request = SingularGetTierEntityRequests.Invalid();
-            //act
-            var response = await tierEntityService.GetTierEntity(request);
-            //assert
-            Assert.Null(response);
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.GetTierEntity(request));
         }
 
         [Fact]
@@ -59,10 +58,8 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             await TierDbContext.SaveChangesAsync();
 
             var request = SingularGetTierEntityRequests.Default();
-            //act
-            var response = await tierEntityService.GetTierEntity(request);
-            //assert
-            Assert.Null(response);
+            //act & assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.GetTierEntity(request));
         }
 
         [Fact]
