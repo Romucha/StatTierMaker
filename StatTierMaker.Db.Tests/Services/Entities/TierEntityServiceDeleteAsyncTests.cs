@@ -23,11 +23,13 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             await TierDbContext.SaveChangesAsync();
 
             var id = TierDbContext.TierEntities.Entry(tierEntity).Entity.Id;
-            var tierEntityRequest = SingularDeleteTierEntityRequests.Normal(id);
+            var request = SingularDeleteTierEntityRequests.Normal(id);
             //act
-            await tierEntityService.DeleteTierEntity(tierEntityRequest);
+            var response = await tierEntityService.DeleteTierEntity(request);
             //assert
             Assert.Null(await TierDbContext.TierEntities.FindAsync(id));
+            Assert.NotNull(response);
+            Assert.NotEqual(0, response.Id);
         }
 
         [Fact]

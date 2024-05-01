@@ -17,14 +17,16 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         public async Task AddAsync_Normal()
         {
             //arrange
-            var tierEntity = SingularAddTierEntityRequests.Normal();
+            var request = SingularAddTierEntityRequests.Normal();
 
             //act
-            await tierEntityService.AddTierEntity(tierEntity);
+            var response = await tierEntityService.AddTierEntity(request);
 
             //assert
-            var tierEntityInDb = TierDbContext.TierEntities.Entry(Mapper.Map<TierEntity>(tierEntity));
+            var tierEntityInDb = TierDbContext.TierEntities.Entry(Mapper.Map<TierEntity>(request)).Entity;
             Assert.NotNull(tierEntityInDb);
+            Assert.NotNull(response);
+            Assert.NotEqual(0, response.Id);
         }
 
         [Fact]

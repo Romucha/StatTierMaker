@@ -30,7 +30,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             TierDbContext.ChangeTracker.Clear();
             var request = SingularUpdateTierEntitiyRequests.Normal(id, entity.TierId);
             //act
-            await tierEntityService.UpdateTierEntity(request);
+            var response = await tierEntityService.UpdateTierEntity(request);
             //assert
             var updatedEntity = await TierDbContext.TierEntities.FindAsync(id);
             Assert.NotNull(updatedEntity);
@@ -39,6 +39,9 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             Assert.Equal(request.Description, updatedEntity.Description);
             Assert.Equal(request.TierId, updatedEntity.TierId);
             Assert.Equal(request.TierEntityParameters.Count, updatedEntity.TierEntityParameters.Count);
+
+            Assert.NotNull(response);
+            Assert.NotEqual(0, response.Id);
         }
 
         [Fact]
