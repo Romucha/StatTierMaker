@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestDbData\Parameters\GetAll\" />
-    <Folder Include="TestDbData\Parameters\Get\" />
     <Folder Include="TestDbData\Parameters\Update\" />
     <Folder Include="TestDbData\TierLists\Add\" />
     <Folder Include="TestDbData\TierLists\Delete\" />
