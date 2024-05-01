@@ -30,6 +30,21 @@ namespace StatTierMaker.Db.Tests.Services.Entities
         }
 
         [Fact]
+        public async Task GetAllAsync_Normal_WhenRequestIsDefault()
+        {
+            //arrange
+            await TierDbContext.AddRangeAsync(EntityCollections.Normal());
+            await TierDbContext.SaveChangesAsync();
+
+            var request = SingularGetAllTierEntitiesRequests.Default();
+            //act
+            var response = await tierEntityService.GetTierEntities(request);
+            //assert
+            Assert.NotNull(response);
+            Assert.NotEmpty(response.Entities);
+        }
+
+        [Fact]
         public async Task GetAllAsync_ThrowsException_WhenRequestIsInvalid()
         {
             //arrange
@@ -37,18 +52,6 @@ namespace StatTierMaker.Db.Tests.Services.Entities
             await TierDbContext.SaveChangesAsync();
 
             var request = SingularGetAllTierEntitiesRequests.Invalid();
-            //act & assert
-            await Assert.ThrowsAsync<ValidationException>(async () =>await tierEntityService.GetTierEntities(request));
-        }
-
-        [Fact]
-        public async Task GetAllAsync_ThrowsException_WhenRequestIsDefault()
-        {
-            //arrange
-            await TierDbContext.AddRangeAsync(EntityCollections.Normal());
-            await TierDbContext.SaveChangesAsync();
-
-            var request = SingularGetAllTierEntitiesRequests.Default();
             //act & assert
             await Assert.ThrowsAsync<ValidationException>(async () => await tierEntityService.GetTierEntities(request));
         }

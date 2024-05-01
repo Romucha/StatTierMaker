@@ -14,7 +14,7 @@ namespace StatTierMaker.Db.Tests.Services.Parameters
 
         public TierParameterServiceTests()
         {
-            tierParameterService = new TierParameterService(UnitOfWork, Mapper, new NullLogger<TierParameterService>());
+            tierParameterService = new TierParameterService(UnitOfWork, Mapper, new NullLogger<TierParameterService>(), Validator);
         }
     }
 }

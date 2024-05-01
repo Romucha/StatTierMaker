@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.Validation;
 using StatTierMaker.Db.DTO.Requests.Entities;
 using StatTierMaker.Db.DTO.Responses.Entities;
 using StatTierMaker.Db.Repositories;
@@ -16,7 +17,7 @@ namespace StatTierMaker.Db.Services
     {
         private readonly ILogger<TierEntityService> logger;
 
-        public TierEntityService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierEntityService> logger) : base(unitOfWork, mapper)
+        public TierEntityService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierEntityService> logger, IValidator validator) : base(unitOfWork, mapper, validator)
         {
             this.logger = logger;
         }
@@ -26,7 +27,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Getting tier entities...");
-                var tierEntities = await UnitOfWork.TierEntityRepository.GetAllAsync(cancellationToken);
+                var request = await Validator.ValidateAsync(getTierEntitiesRequest, cancellationToken);
+
+                var tierEntities = await UnitOfWork.TierEntityRepository.GetAllAsync(request.PageSize, request.PageNumber, cancellationToken);
+
                 return new GetTierEntitiesResponses
                 {
                     Entities = tierEntities.Select(Mapper.Map<GetTierEntitiesResponse>)
@@ -48,8 +52,11 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Getting tier entity...");
-                var id = getTierEntityRequest.Id;
+                var request= await Validator.ValidateAsync(getTierEntityRequest, cancellationToken);
+
+                var id = request.Id;
                 var tierEntity = await UnitOfWork.TierEntityRepository.GetAsync(id, cancellationToken);
+
                 return Mapper.Map<GetTierEntityResponse>(tierEntity);
             }
             catch (Exception ex)
@@ -63,13 +70,20 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task AddTierEntity(AddTierEntityRequest addTierEntityRequest, CancellationToken cancellationToken = default)
+        public async Task<AddTierEntityResponse> AddTierEntity(AddTierEntityRequest addTierEntityRequest, CancellationToken cancellationToken = default)
         {
             try
             {
                 logger.LogInformation("Adding tier entity...");
-                var tierEntity = Mapper.Map<TierEntity>(addTierEntityRequest);
+                var request = await Validator.ValidateAsync(addTierEntityRequest, cancellationToken);
+
+                var tierEntity = Mapper.Map<TierEntity>(request);
                 await UnitOfWork.TierEntityRepository.AddAsync(tierEntity, cancellationToken);
+
+                return new AddTierEntityResponse()
+                {
+                    Id = tierEntity.Id
+                };
             }
             catch (Exception ex)
             {
@@ -82,13 +96,19 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task DeleteTierEntity(DeleteTierEntityRequest deleteTierEntityRequest, CancellationToken cancellationToken = default)
+        public async Task<DeleteTierEntityResponse> DeleteTierEntity(DeleteTierEntityRequest deleteTierEntityRequest, CancellationToken cancellationToken = default)
         {
             try
             {
                 logger.LogInformation("Deleting tier entity...");
-                var tierEntity = Mapper.Map<TierEntity>(deleteTierEntityRequest);
-                await UnitOfWork.TierEntityRepository.DeleteAsync(deleteTierEntityRequest.Id, cancellationToken);
+                var request = await Validator.ValidateAsync(deleteTierEntityRequest, cancellationToken);
+
+                await UnitOfWork.TierEntityRepository.DeleteAsync(request.Id, cancellationToken);
+
+                return new DeleteTierEntityResponse()
+                {
+                    Id = request.Id,
+                };
             }
             catch (Exception ex)
             {
@@ -101,13 +121,20 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task UpdateTierEntity(UpdateTierEntityRequest updateTierEntityRequest, CancellationToken cancellationToken = default)
+        public async Task<UpdateTierEntityResponse> UpdateTierEntity(UpdateTierEntityRequest updateTierEntityRequest, CancellationToken cancellationToken = default)
         {
             try
             {
                 logger.LogInformation("Updating tier entity...");
-                var tierEntity = Mapper.Map<TierEntity>(updateTierEntityRequest);
+                var request = await Validator.ValidateAsync(updateTierEntityRequest, cancellationToken);
+
+                var tierEntity = Mapper.Map<TierEntity>(request);
                 await UnitOfWork.TierEntityRepository.UpdateAsync(tierEntity, cancellationToken);
+
+                return new UpdateTierEntityResponse()
+                {
+                    Id = request.Id,
+                };
             }
             catch (Exception ex)
             {

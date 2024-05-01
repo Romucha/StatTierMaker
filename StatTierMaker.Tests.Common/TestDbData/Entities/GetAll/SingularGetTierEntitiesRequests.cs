@@ -13,7 +13,8 @@ namespace StatTierMaker.Tests.Common.TestDbData.Entities.GetAll
         {
             return new()
             {
-                
+                PageNumber = 1,
+                PageSize = 1,
             };
         }
 
@@ -21,7 +22,8 @@ namespace StatTierMaker.Tests.Common.TestDbData.Entities.GetAll
         {
             return new()
             {
-                
+                PageNumber = -1,
+                PageSize = -1,
             };
         }
 

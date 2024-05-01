@@ -62,7 +62,7 @@ namespace StatTierMaker.Db.Repositories
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<T>> GetAllAsync(int pageSize = 0, int pageNumber = 0, CancellationToken cancellationToken = default)
         {
             try
             {

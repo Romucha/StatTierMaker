@@ -12,7 +12,7 @@ namespace StatTierMaker.Db.Repositories
 
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetAllAsync(int pageSize = 0, int pageNumber = 0, CancellationToken cancellationToken = default);
 
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 

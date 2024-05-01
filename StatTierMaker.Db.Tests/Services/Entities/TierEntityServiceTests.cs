@@ -14,7 +14,7 @@ namespace StatTierMaker.Db.Tests.Services.Entities
 
         public TierEntityServiceTests() : base()
         {
-            tierEntityService = new TierEntityService(UnitOfWork, Mapper, new NullLogger<TierEntityService>());
+            tierEntityService = new TierEntityService(UnitOfWork, Mapper, new NullLogger<TierEntityService>(), Validator);
         }
     }
 }

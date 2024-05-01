@@ -24,7 +24,7 @@ namespace StatTierMaker.Db.Tests.Services
 
         protected readonly IMapper Mapper;
 
-        protected IValidator Validator { get; set; }
+        protected readonly IValidator Validator;
         protected BaseServiceTests()
         {
             IConfiguration configuration = new Mock<IConfiguration>().Object;

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.Validation;
 using StatTierMaker.Db.DTO.Requests.Parameters;
 using StatTierMaker.Db.DTO.Requests.Tiers;
 using StatTierMaker.Db.DTO.Responses.Parameters;
@@ -18,7 +19,7 @@ namespace StatTierMaker.Db.Services
     {
         private readonly ILogger<TierParameterService> logger;
 
-        public TierParameterService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierParameterService> logger) : base(unitOfWork, mapper)
+        public TierParameterService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierParameterService> logger, IValidator validator) : base(unitOfWork, mapper, validator)
         {
             this.logger = logger;
         }
@@ -28,7 +29,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation($"Getting tier parameter...");
-                var tierParameter = await UnitOfWork.TierParameterRepository.GetAsync(getTierParameterRequest.Id, cancellationToken);
+                var request = await Validator.ValidateAsync(getTierParameterRequest, cancellationToken);
+
+                var tierParameter = await UnitOfWork.TierParameterRepository.GetAsync(request.Id, cancellationToken);
+
                 return Mapper.Map<GetTierParameterResponse>(tierParameter);
             }
             catch (Exception ex) 
@@ -47,7 +51,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation($"Getting tier parameters...");
-                var tierParameters = await UnitOfWork.TierParameterRepository.GetAllAsync(cancellationToken);
+                var request = await Validator.ValidateAsync(getTierParametersRequest, cancellationToken);
+
+                var tierParameters = await UnitOfWork.TierParameterRepository.GetAllAsync(request.PageSize, request.PageNumber, cancellationToken);
+
                 return new GetTierParametersResponses()
                 {
                     Parameters = tierParameters.Select(Mapper.Map<GetTierParametersResponse>)
@@ -69,8 +76,11 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation($"Adding tier parameter...");
-                var parameter = Mapper.Map<TierParameter>(addTierParameterRequest);
+                var request= await Validator.ValidateAsync(addTierParameterRequest, cancellationToken);
+
+                var parameter = Mapper.Map<TierParameter>(request);
                 await UnitOfWork.TierParameterRepository.AddAsync(parameter, cancellationToken);
+
                 return Mapper.Map<AddTierParameterResponse>(parameter);
             }
             catch (Exception ex)
@@ -89,7 +99,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation($"Deleting tier parameter...");
-                await UnitOfWork.TierParameterRepository.DeleteAsync(deleteTierParameterRequest.Id, cancellationToken);
+                var request = await Validator.ValidateAsync(deleteTierParameterRequest, cancellationToken);
+
+                await UnitOfWork.TierParameterRepository.DeleteAsync(request.Id, cancellationToken);
+
                 return new DeleteTierParameterResponse()
                 {
                     Id = deleteTierParameterRequest.Id
@@ -111,8 +124,11 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation($"Updating tier parameter...");
-                var parameter = Mapper.Map<TierParameter>(updateTierParameterRequest);
+                var request = await Validator.ValidateAsync(updateTierParameterRequest, cancellationToken);
+
+                var parameter = Mapper.Map<TierParameter>(request);
                 await UnitOfWork.TierParameterRepository.UpdateAsync(parameter, cancellationToken);
+
                 return Mapper.Map<UpdateTierParameterResponse>(await UnitOfWork.TierParameterRepository.GetAsync(parameter.Id));
             }
             catch (Exception ex)

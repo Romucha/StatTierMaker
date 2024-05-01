@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using StatTierMaker.API.Tiers;
+using StatTierMaker.API.Validation;
 using StatTierMaker.Db.DTO.Requests.Lists;
 using StatTierMaker.Db.DTO.Responses.Entities;
 using StatTierMaker.Db.DTO.Responses.Lists;
@@ -17,7 +18,7 @@ namespace StatTierMaker.Db.Services
     {
         private readonly ILogger<TierListService> logger;
 
-        public TierListService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierListService> logger) : base(unitOfWork, mapper)
+        public TierListService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TierListService> logger, IValidator validator) : base(unitOfWork, mapper, validator)
         {
             this.logger = logger;
         }
@@ -27,7 +28,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Getting tier lists...");
-                var lists = await UnitOfWork.TierListRepository.GetAllAsync(cancellationToken);
+                var request = await Validator.ValidateAsync(getTierListsRequest, cancellationToken);
+
+                var lists = await UnitOfWork.TierListRepository.GetAllAsync(request.PageSize, request.PageNumber, cancellationToken);
+
                 return new GetTierListsResponses
                 {
                     TierLists = lists.Select(Mapper.Map<GetTierListsResponse>)
@@ -49,7 +53,10 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Getting tier list...");
-                var list = await UnitOfWork.TierListRepository.GetAsync(getTierListRequest.Id, cancellationToken);
+                var request = await Validator.ValidateAsync(getTierListRequest, cancellationToken);
+
+                var list = await UnitOfWork.TierListRepository.GetAsync(request.Id, cancellationToken);
+
                 return Mapper.Map<GetTierListResponse>(list);
             }
             catch (Exception ex)
@@ -68,8 +75,11 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Adding tier list...");
-                var list = Mapper.Map<TierList>(addTierListRequest);
+                var request = await Validator.ValidateAsync(addTierListRequest, cancellationToken);
+
+                var list = Mapper.Map<TierList>(request);
                 await UnitOfWork.TierListRepository.AddAsync(list, cancellationToken);
+
                 return new AddTierListResponse()
                 {
                     Id = list.Id,
@@ -91,10 +101,13 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Deleting tier list...");
-                await UnitOfWork.TierListRepository.DeleteAsync(deleteTierListRequest.Id, cancellationToken);
+                var request = await Validator.ValidateAsync(deleteTierListRequest, cancellationToken);
+
+                await UnitOfWork.TierListRepository.DeleteAsync(request.Id, cancellationToken);
+
                 return new DeleteTierListResponse
                 {
-                    Id= deleteTierListRequest.Id,
+                    Id = request.Id,
                 };
             }
             catch (Exception ex)
@@ -113,8 +126,11 @@ namespace StatTierMaker.Db.Services
             try
             {
                 logger.LogInformation("Updating tier list...");
-                var list = Mapper.Map<TierList>(updateTierListRequest);
+                var request = await Validator.ValidateAsync(updateTierListRequest, cancellationToken);
+
+                var list = Mapper.Map<TierList>(request);
                 await UnitOfWork.TierListRepository.UpdateAsync(list, cancellationToken);
+
                 return Mapper.Map<UpdateTierListResponse>(list);
             }
             catch (Exception ex)

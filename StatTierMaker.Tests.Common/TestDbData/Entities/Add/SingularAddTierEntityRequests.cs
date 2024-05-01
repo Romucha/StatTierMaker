@@ -33,7 +33,8 @@ namespace StatTierMaker.Tests.Common.TestDbData.Entities.Add
                         Name = "Tier Parameter Name 3",
                         Description = "Tier Parameter Description 3"
                     }
-                }
+                },
+                TierId = 1
             };
         }
 
