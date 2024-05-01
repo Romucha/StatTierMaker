@@ -94,7 +94,7 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task<DeleteTierParameterResponse> DeleteTier(DeleteTierParameterRequest deleteTierParameterRequest, CancellationToken cancellationToken = default)
+        public async Task<DeleteTierParameterResponse> DeleteTierParameter(DeleteTierParameterRequest deleteTierParameterRequest, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace StatTierMaker.Db.Services
             }
         }
 
-        public async Task<UpdateTierParameterResponse> UpdateTier(UpdateTierParameterRequest updateTierParameterRequest, CancellationToken cancellationToken = default)
+        public async Task<UpdateTierParameterResponse> UpdateTierParameter(UpdateTierParameterRequest updateTierParameterRequest, CancellationToken cancellationToken = default)
         {
             try
             {

@@ -6,6 +6,7 @@ using StatTierMaker.Tests.Common.TestAPIData.Parameters;
 using StatTierMaker.Tests.Common.TestDbData.Parameters.Add;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,45 @@ namespace StatTierMaker.Db.Tests.Services.Parameters
             Assert.Equal(request.Name, parameter.Name);
             Assert.Equal(request.Description, parameter.Description);
             Assert.Equal(request.Name, parameter.Name);
+        }
+
+        [Fact]
+        public async Task AddAsync_ThrowsException_WhenRequestIsInvalid()
+        {
+            //arrange
+            var entity = SingularEntities.Normal();
+            await TierDbContext.AddAsync(entity);
+            await TierDbContext.SaveChangesAsync();
+
+            var request = SingularAddTierParameterRequests.Invalid();
+            //act && assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierParameterService.AddTierParameter(request));
+        }
+
+        [Fact]
+        public async Task AddAsync_ThrowsException_WhenRequestIsDefault()
+        {
+            //arrange
+            var entity = SingularEntities.Normal();
+            await TierDbContext.AddAsync(entity);
+            await TierDbContext.SaveChangesAsync();
+
+            var request = SingularAddTierParameterRequests.Default();
+            //act && assert
+            await Assert.ThrowsAsync<ValidationException>(async () => await tierParameterService.AddTierParameter(request));
+        }
+
+        [Fact]
+        public async Task AddAsync_ThrowsException_WhenRequestIsNull()
+        {
+            //arrange
+            var entity = SingularEntities.Normal();
+            await TierDbContext.AddAsync(entity);
+            await TierDbContext.SaveChangesAsync();
+
+            var request = SingularAddTierParameterRequests.Null();
+            //act && assert
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await tierParameterService.AddTierParameter(request));
         }
     }
 }
