@@ -18,11 +18,6 @@
     <Folder Include="TestDbData\TierLists\GetAll\" />
     <Folder Include="TestDbData\TierLists\Get\" />
     <Folder Include="TestDbData\TierLists\Update\" />
-    <Folder Include="TestDbData\Tiers\Add\" />
-    <Folder Include="TestDbData\Tiers\Delete\" />
-    <Folder Include="TestDbData\Tiers\GetAll\" />
-    <Folder Include="TestDbData\Tiers\Get\" />
-    <Folder Include="TestDbData\Tiers\Update\" />
   </ItemGroup>
 
 </Project>
