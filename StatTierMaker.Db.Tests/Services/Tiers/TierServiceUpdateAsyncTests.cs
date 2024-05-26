@@ -34,14 +34,16 @@ namespace StatTierMaker.Db.Tests.Services.Tiers
             //act
             var response = await tierService.UpdateTier(request);
             //assert
+            var updatedTier = await TierDbContext.Tiers.FindAsync(response.Id);
             Assert.NotNull(response);
-            Assert.Equal(tier.Id, response.Id);
-            Assert.Equal(request.Id, tier.Id);
-            Assert.Equal(request.Name, tier.Name);
-            Assert.Equal(request.Description, tier.Description);
-            Assert.Equal(request.Value, tier.Value);
+            Assert.NotNull(updatedTier);
+            Assert.Equal(updatedTier.Id, response.Id);
+            Assert.Equal(request.Id, updatedTier.Id);
+            Assert.Equal(request.Name, updatedTier.Name);
+            Assert.Equal(request.Description, updatedTier.Description);
+            Assert.Equal(request.Value, updatedTier.Value);
             Assert.NotNull(request.Entities);
-            Assert.Equal(request.Entities.Count, tier.Entities.Count);
+            Assert.Equal(request.Entities.Count, updatedTier.Entities.Count);
         }
 
         [Fact]
