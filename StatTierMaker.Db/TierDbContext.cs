@@ -21,7 +21,7 @@ namespace StatTierMaker.Db
 
         public DbSet<TierParameter> TierParameters { get; set; }
 
-        public TierDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
+        public TierDbContext(IConfiguration configuration, DbContextOptions options) : base(options)
         {
             this.configuration = configuration;
             Database.EnsureCreated();
@@ -30,11 +30,6 @@ namespace StatTierMaker.Db
                 Database.Migrate();
             }
 
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
         }
     }
 }
