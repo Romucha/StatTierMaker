@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Db", "StatTie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Db.Tests", "StatTierMaker.Db.Tests\StatTierMaker.Db.Tests.csproj", "{70941887-677A-4282-87E6-E45A33FBB40B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.Tests.Common", "StatTierMaker.Tests.Common\StatTierMaker.Tests.Common.csproj", "{FFD932D1-DD36-475E-9045-B8DA2806072B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Tests.Common", "StatTierMaker.Tests.Common\StatTierMaker.Tests.Common.csproj", "{FFD932D1-DD36-475E-9045-B8DA2806072B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.App.Lib", "StatTierMaker.App.Lib\StatTierMaker.App.Lib.csproj", "{126B36F9-A214-4915-8146-D7DC04F785C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +54,10 @@ Global
 		{FFD932D1-DD36-475E-9045-B8DA2806072B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD932D1-DD36-475E-9045-B8DA2806072B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFD932D1-DD36-475E-9045-B8DA2806072B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126B36F9-A214-4915-8146-D7DC04F785C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126B36F9-A214-4915-8146-D7DC04F785C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126B36F9-A214-4915-8146-D7DC04F785C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126B36F9-A214-4915-8146-D7DC04F785C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
