@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using StatTierMaker.Lib.Extensions;
 using StatTierMaker.Db.Extensions;
 
 namespace StatTierMaker
@@ -18,6 +19,8 @@ namespace StatTierMaker
             builder.Services.AddMauiBlazorWebView();
 
             builder.Services.AddTierMakerDbServices();
+
+            builder.Services.AddTierMakerVisualComponentServices();
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

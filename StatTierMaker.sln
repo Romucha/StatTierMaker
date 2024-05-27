@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Db.Tests", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Tests.Common", "StatTierMaker.Tests.Common\StatTierMaker.Tests.Common.csproj", "{FFD932D1-DD36-475E-9045-B8DA2806072B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTierMaker.App.Lib", "StatTierMaker.App.Lib\StatTierMaker.App.Lib.csproj", "{126B36F9-A214-4915-8146-D7DC04F785C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatTierMaker.Lib", "StatTierMaker.Lib\StatTierMaker.Lib.csproj", "{126B36F9-A214-4915-8146-D7DC04F785C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

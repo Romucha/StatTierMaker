@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using StatTierMaker.API.Calculator;
 using StatTierMaker.API.Extensions;
+using StatTierMaker.API.Tiers;
 using StatTierMaker.API.Validation;
 using StatTierMaker.Db.Mapping;
+using StatTierMaker.Db.Repositories;
 using StatTierMaker.Db.Services;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,12 @@ namespace StatTierMaker.Db.Extensions
     {
         public static void AddTierMakerDbServices(this IServiceCollection serviceDescriptors)
         {
+            serviceDescriptors.AddScoped<IUnitOfWork, UnitOfWork>();
+            serviceDescriptors.AddScoped<IRepository<Tier>, Repository<Tier>>();
+            serviceDescriptors.AddScoped<IRepository<TierList>, Repository<TierList>>();
+            serviceDescriptors.AddScoped<IRepository<TierEntity>, Repository<TierEntity>>();
+            serviceDescriptors.AddScoped<IRepository<TierParameter>, Repository<TierParameter>>();
+
             serviceDescriptors.AddScoped<TierParameterService>();
             serviceDescriptors.AddScoped<TierEntityService>();
             serviceDescriptors.AddScoped<TierService>();

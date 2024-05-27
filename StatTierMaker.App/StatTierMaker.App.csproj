@@ -65,7 +65,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StatTierMaker.App.Lib\StatTierMaker.App.Lib.csproj" />
+      <ProjectReference Include="..\StatTierMaker.Lib\StatTierMaker.Lib.csproj" />
     </ItemGroup>
 
 </Project>

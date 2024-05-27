@@ -27,7 +27,7 @@ namespace StatTierMaker.Db.Tests.Repositories
             IConfiguration configuration = new Mock<IConfiguration>().Object;
             DbContextOptions<TierDbContext> dbContextOptions = new DbContextOptionsBuilder<TierDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString())
                                                                                                            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning)).Options;
-            TierDbContext = new TierDbContext(dbContextOptions, configuration);
+            TierDbContext = new TierDbContext(configuration, dbContextOptions);
 
             ILogger<TierValidator> validationLogger = new NullLogger<TierValidator>();
             Validator =  new TierValidator(validationLogger);
