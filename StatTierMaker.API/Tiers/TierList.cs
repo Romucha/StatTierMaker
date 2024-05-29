@@ -31,7 +31,6 @@ public class TierList
     /// Collection of tiers.
     /// </summary>
     [Required]
-    [CollectionNotEmpty]
     public ICollection<Tier>? Tiers { get; set; }
 
     /// <summary>

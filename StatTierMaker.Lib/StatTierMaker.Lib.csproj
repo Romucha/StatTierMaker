@@ -21,13 +21,4 @@
     <ProjectReference Include="..\StatTierMaker.Db\StatTierMaker.Db.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\TierLists\" />
-    <Folder Include="ViewModels\TierParameters\" />
-    <Folder Include="ViewModels\TierEntities\" />
-    <Folder Include="Views\TierLists\" />
-    <Folder Include="Views\TierParameters\" />
-    <Folder Include="Views\TierEntities\" />
-  </ItemGroup>
-
 </Project>

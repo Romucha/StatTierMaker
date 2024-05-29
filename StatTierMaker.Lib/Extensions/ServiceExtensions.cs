@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using StatTierMaker.Lib.ViewModels.Tiers;
+using StatTierMaker.Lib.ViewModels.About;
+using StatTierMaker.Lib.ViewModels.Home;
+using StatTierMaker.Lib.ViewModels.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,9 @@ namespace StatTierMaker.Lib.Extensions
     {
         public static void AddTierMakerVisualComponentServices(this IServiceCollection serviceDescriptors)
         {
-            serviceDescriptors.AddTransient<TierVM>();
+            serviceDescriptors.AddTransient<AboutViewModel>();
+            serviceDescriptors.AddTransient<HomeViewModel>();
+            serviceDescriptors.AddTransient<SettingsViewModel>();
         }
     }
 }

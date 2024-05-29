@@ -18,10 +18,10 @@ namespace StatTierMaker.Db.DTO.Requests.Lists
         [Required(AllowEmptyStrings = true)]
         public string Description { get; set; }
 
-        [CollectionNotEmpty]
+        [Required]
         public ICollection<AddTierRequest> Tiers { get; set; }
 
-        [CollectionNotEmpty]
+        [Required]
         public ICollection<AddTierEntityRequest> Entities { get; set; }
     }
 }
