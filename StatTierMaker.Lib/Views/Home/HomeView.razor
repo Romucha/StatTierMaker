@@ -1,5 +1,7 @@
-﻿<h3>HomeView</h3>
-
-@code {
-
+﻿@foreach (var list in ViewModel.TierLists)
+{
+    <legend>
+        <div>@list.Name</div>
+        <div>@list.Description</div>
+    </legend>
 }
