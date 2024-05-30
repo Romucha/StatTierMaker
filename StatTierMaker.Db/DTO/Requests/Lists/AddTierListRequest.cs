@@ -19,9 +19,9 @@ namespace StatTierMaker.Db.DTO.Requests.Lists
         public string Description { get; set; }
 
         [Required]
-        public ICollection<AddTierRequest> Tiers { get; set; }
+        public ICollection<AddTierRequest> Tiers { get; set; } = new List<AddTierRequest>();
 
         [Required]
-        public ICollection<AddTierEntityRequest> Entities { get; set; }
+        public ICollection<AddTierEntityRequest> Entities { get; set; } = new List<AddTierEntityRequest>();
     }
 }

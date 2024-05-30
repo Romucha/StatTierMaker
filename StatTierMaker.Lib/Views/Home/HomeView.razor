@@ -1,7 +1,18 @@
-﻿@foreach (var list in ViewModel.TierLists)
+﻿@using Microsoft.AspNetCore.Components.Forms
+<div>
+    <form method="post" @onsubmit="@(async () => await ViewModel.CreateTierListCommand.ExecuteAsync(null))" @formname="add-tier-list">
+        <label>
+           Name:
+           <InputText @bind-Value="@ViewModel.NewTierList.Name" />
+        </label>
+        <label>
+           Description:
+           <InputText @bind-Value="@ViewModel.NewTierList.Description" />
+        </label>
+        <button type="submit">Create</button>
+    </form>
+</div>
+@foreach (var list in ViewModel.TierLists)
 {
-    <legend>
-        <div>@list.Name</div>
-        <div>@list.Description</div>
-    </legend>
+    <DisplayTierListView TierList="@list" />
 }

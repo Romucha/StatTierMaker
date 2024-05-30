@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using StatTierMaker.Db.DTO.Responses.Lists;
 using StatTierMaker.Lib.ViewModels.Home;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace StatTierMaker.Lib.Views.Home
 {
-    public partial class HomeView
+    public partial class DisplayTierListView
     {
+        [Parameter]
+        public GetTierListsResponse TierList { get; set; } = default!;
+
         [Inject]
-        public HomeViewModel ViewModel { get; set; } = default!;
+        public DisplayTierListViewModel ViewModel { get; set; } = default!;
 
         protected override async Task OnInitializedAsync()
         {
+            ViewModel.TierList = TierList;
             ViewModel.PropertyChanged += (o, e) => this.StateHasChanged();
-            await ViewModel.GetTierListsAsync((0, 0, default));
             await base.OnInitializedAsync();
         }
     }

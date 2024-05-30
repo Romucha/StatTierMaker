@@ -25,7 +25,16 @@ namespace StatTierMaker.Lib.ViewModels.Home
             set => SetProperty(ref tierLists, value);
         }
 
+        private AddTierListRequest newTierList = new();
+        public AddTierListRequest NewTierList
+        {
+            get => newTierList;
+            set => SetProperty(ref newTierList, value);
+        }
+
         public IAsyncRelayCommand<(int, int, CancellationToken)> GetTierListsCommand => new AsyncRelayCommand<(int, int, CancellationToken)>(GetTierListsAsync);
+
+        public IAsyncRelayCommand CreateTierListCommand => new AsyncRelayCommand(createTierList);
 
         public HomeViewModel(ILogger<HomeViewModel> logger, TierListService tierListService)
         {
@@ -41,6 +50,12 @@ namespace StatTierMaker.Lib.ViewModels.Home
                 PageSize = request.pageSize
             };
             TierLists = new ObservableCollection<GetTierListsResponse>((await tierListService.GetTierLists(getTierListsRequest, request.cancellationToken)).TierLists);
+        }
+
+        private async Task createTierList()
+        {
+            await tierListService.AddTierList(NewTierList);
+            await GetTierListsAsync((0, 0, default));
         }
     }
 }

@@ -17,6 +17,7 @@ namespace StatTierMaker.Lib.Extensions
             serviceDescriptors.AddTransient<AboutViewModel>();
             serviceDescriptors.AddTransient<HomeViewModel>();
             serviceDescriptors.AddTransient<SettingsViewModel>();
+            serviceDescriptors.AddTransient<DisplayTierListViewModel>();
         }
     }
 }

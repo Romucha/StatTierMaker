@@ -1,0 +1,8 @@
+﻿<div style="border:groove" title="@ViewModel.TierList.Description">
+    <div>
+        @ViewModel.TierList.Name
+    </div>
+    <div class="button" @onclick="(async () => await ViewModel.DeleteTierListCommand.ExecuteAsync(ViewModel.TierList.Id))">
+        Delete
+    </div>
+</div>
